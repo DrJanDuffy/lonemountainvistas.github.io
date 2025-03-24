@@ -114,7 +114,7 @@
                 <a href="#virtual-tour" class="cta-button secondary">Take Virtual Tour</a>
             </div>
             <div class="hero-search">
-                <form action="#" class="property-search-form">
+                <form action="#properties" id="property-search-form" class="property-search-form">
                     <div class="search-group">
                         <label for="price-range">Price Range</label>
                         <select id="price-range" name="price-range">
@@ -176,14 +176,13 @@
                 <p>Explore our handpicked selection of luxury homes with spectacular mountain views</p>
             </div>
             
-            <!-- Properties Grid Container -->
-            <div class="properties-grid">
-                <!-- Property listings will be loaded here by RealScout -->
-                <div id="newest-listings-container"></div>
-            </div>
-            
-            <div class="view-all-container">
-                <a href="all-properties.html" class="view-all-button">View All Properties</a>
+            <!-- RealScout Properties Container -->
+            <div id="properties-grid" class="properties-grid">
+                <!-- RealScout widget will be inserted here -->
+                <div class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Loading properties...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -191,28 +190,179 @@
     <!-- Neighborhood Section -->
     <section id="neighborhood" class="neighborhood-section">
         <div class="container">
-            <!-- Neighborhood content... -->
+            <div class="section-title">
+                <h2>Discover Lone Mountain</h2>
+                <p>A premier Las Vegas community offering tranquility, convenience, and stunning natural beauty</p>
+            </div>
+            <div class="neighborhood-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Scenic Views</h3>
+                    <p>Nestled against the picturesque Lone Mountain, residents enjoy breathtaking views and access to hiking trails just minutes from their doorstep.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Top-Rated Schools</h3>
+                    <p>Home to some of Las Vegas' highest-rated schools, including Lone Mountain Elementary and prestigious private academies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Shopping & Dining</h3>
+                    <p>Just minutes from Boca Park and Tivoli Village, offering upscale shopping, dining, and entertainment options.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Prime Location</h3>
+                    <p>Conveniently located with easy access to the 215 Beltway, just 15 minutes from Downtown Summerlin and 20 minutes from the Las Vegas Strip.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <!-- About content... -->
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Lone Mountain Vistas</h2>
+                    <p>Nestled against the majestic backdrop of Lone Mountain in northwest Las Vegas, Lone Mountain Vistas offers an unparalleled living experience that combines luxury with natural beauty.</p>
+                    <p>Our exclusive community features custom-designed homes, spacious lots, and world-class amenities, all while providing convenient access to Las Vegas' best shopping, dining, and entertainment.</p>
+                    <p>At an elevation of approximately 3,000 feet, Lone Mountain provides a cooler microclimate than much of the Las Vegas Valley, with homes positioned to maximize views of both the mountain and the glittering city lights.</p>
+                    <div class="broker-info">
+                        <img src="assets/images/properties/janet-duffy.jpg" alt="Dr. Janet Duffy, REALTOR" class="broker-image">
+                        <div class="broker-details">
+                            <h3>Dr. Janet Duffy</h3>
+                            <p>REALTOR® | License# S.0197614.LLC</p>
+                            <p>Specializing in luxury properties in the Lone Mountain area for over 15 years</p>
+                            <a href="#contact" class="contact-broker-button">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image"></div>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <!-- Contact content... -->
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Interested in our Lone Mountain properties? Send us a message and our team will get back to you shortly.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form-container">
+                    <form action="#" method="post" id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">I'm interested in</label>
+                            <select id="interest" class="form-control">
+                                <option value="buying">Buying a home</option>
+                                <option value="selling">Selling my home</option>
+                                <option value="investing">Investment opportunities</option>
+                                <option value="general">General information</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required aria-required="true"></textarea>
+                        </div>
+                        <div class="form-group form-checkbox">
+                            <input type="checkbox" id="consent" required aria-required="true">
+                            <label for="consent">I consent to being contacted by Lone Mountain Vistas via email or phone.</label>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Office Address</h3>
+                            <p>3350 Novat St #120<br>Las Vegas, NV 89129</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:7025000448">(702) 500-0448</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:DrDuffy@bhhsnv.com">DrDuffy@bhhsnv.com</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Office Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: By appointment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <!-- Footer content... -->
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lone Mountain Vistas</h3>
+                    <p>Your gateway to luxury living in Las Vegas' most prestigious mountain community.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#neighborhood">Neighborhood</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> 3350 Novat St #120, Las Vegas, NV 89129</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:7025000448">(702) 500-0448</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:DrDuffy@bhhsnv.com">DrDuffy@bhhsnv.com</a></li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lone Mountain Vistas. All rights reserved. REALTOR® - Dr. Janet Duffy, License# S.0197614.LLC</p>
+            </div>
         </div>
     </footer>
 
@@ -220,59 +370,57 @@
     <script src="js/config.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/voice-search.js"></script>
-    <!-- RealScout Implementation -->
-    <script type="module" src="js/realscout-implementation.js"></script>
     
-    <!-- Structured Data for Property Listings -->
-    <script type="application/ld+json" id="property-listings-schema">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": "5678 Sierra Sunset Drive",
-            "description": "Stunning contemporary home with panoramic mountain views, featuring an open floor plan, gourmet kitchen, and resort-style backyard.",
-            "offers": {
-              "@type": "Offer",
-              "price": "1250000",
-              "priceCurrency": "USD"
+    <!-- RealScout Implementation -->
+    <script type="module">
+        import { initRealScout } from './js/realscout-config.js';
+        
+        // Initialize RealScout when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize RealScout Widget
+            initRealScout().catch(error => {
+                console.error('Failed to initialize RealScout:', error);
+            });
+            
+            // Handle property search form submission
+            const searchForm = document.getElementById('property-search-form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Scroll to properties section
+                    document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Get form values
+                    const priceRange = document.getElementById('price-range').value;
+                    const bedrooms = document.getElementById('bedrooms').value;
+                    const bathrooms = document.getElementById('bathrooms').value;
+                    
+                    // Import the needed function
+                    import('./js/realscout-config.js').then(module => {
+                        const { createRealScoutWidget } = module;
+                        
+                        // Create options object
+                        const options = {
+                            'sort-order': 'NEWEST'
+                        };
+                        
+                        // Add filters if selected
+                        if (priceRange) {
+                            const [min, max] = priceRange.split('-');
+                            options['price-min'] = min;
+                            if (max && !max.includes('+')) options['price-max'] = max;
+                        }
+                        
+                        if (bedrooms) options['beds-min'] = bedrooms;
+                        if (bathrooms) options['baths-min'] = bathrooms;
+                        
+                        // Create widget with filters
+                        createRealScoutWidget('properties-grid', options);
+                    });
+                });
             }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "8901 Desert Willow Court",
-            "description": "Exquisite Mediterranean-inspired estate featuring high ceilings, marble flooring, chef's kitchen, home theater, and infinity pool.",
-            "offers": {
-              "@type": "Offer",
-              "price": "1750000",
-              "priceCurrency": "USD"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": "1234 Golden Canyon Way",
-            "description": "Modern craftsman with incredible attention to detail, featuring hardwood floors, stone accents, and a seamless indoor-outdoor living experience.",
-            "offers": {
-              "@type": "Offer",
-              "price": "985000",
-              "priceCurrency": "USD"
-            }
-          }
-        }
-      ]
-    }
+        });
     </script>
 </body>
 </html>
