@@ -28,10 +28,22 @@
         integrity="sha384-">
     </script>
     <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
         /* Global Container Styles */
         .container {
-            max-width: 1600px;
-            width: 95%;
+            max-width: 1800px;
+            width: 98%;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -59,22 +71,28 @@
             position: relative;
             z-index: 1000;
             margin: 2rem auto;
+            padding: 0;
+            background: transparent;
         }
 
         /* Section Styles */
         section {
             padding: 4rem 0;
+            width: 100%;
+            overflow: hidden;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
+            padding: 0 1rem;
         }
 
         .section-title h2 {
             font-size: 2.5rem;
             color: #0A2540;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .section-title p {
@@ -88,12 +106,19 @@
         .featured-properties {
             background-color: #F7F9FC;
             padding: 4rem 0;
+            width: 100%;
+        }
+
+        .featured-properties .container {
+            max-width: 1800px;
+            width: 98%;
         }
 
         .properties-grid {
             width: 100%;
             margin: 0 auto;
             display: block;
+            min-height: 600px;
         }
 
         .rs-loading {
@@ -110,10 +135,10 @@
 
         /* Hero Section Adjustments */
         .hero-search {
-            margin-top: 3rem;
             width: 100%;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 3rem auto 0;
+            padding: 0 1rem;
         }
 
         .property-search-form {
@@ -128,12 +153,24 @@
         }
 
         /* Responsive Adjustments */
+        @media (max-width: 1600px) {
+            .container {
+                width: 95%;
+            }
+            .featured-properties .container {
+                width: 95%;
+            }
+        }
+
         @media (max-width: 1200px) {
             .container {
-                width: 90%;
+                width: 92%;
             }
             .section-title h2 {
                 font-size: 2rem;
+            }
+            .featured-properties .container {
+                width: 92%;
             }
         }
 
@@ -154,6 +191,10 @@
             .section-title p {
                 font-size: 1rem;
             }
+            .featured-properties .container {
+                width: 95%;
+                padding: 0 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -163,6 +204,10 @@
             }
             section {
                 padding: 2rem 0;
+            }
+            .featured-properties .container {
+                width: 100%;
+                padding: 0 10px;
             }
         }
     </style>
