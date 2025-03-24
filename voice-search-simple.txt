@@ -1,0 +1,491 @@
+/**
+ * Voice Search Implementation for Lone Mountain Vistas
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    initVoiceSearch();
+});
+
+/**
+ * Initialize voice search functionality
+ */
+function initVoiceSearch() {
+    const voiceSearchButton = document.getElementById('voice-search-button');
+    
+    if (!voiceSearchButton) return;
+    
+    // Check if browser supports speech recognition
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        // Configure speech recognition
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        
+        // Add click event to voice search button
+        voiceSearchButton.addEventListener('click', function() {
+            // Update button to show listening state
+            this.innerHTML = '<i class="fas fa-microphone-alt"></i> Listening...';
+            this.classList.add('listening');
+            
+            // Show listening indicator
+            showListeningIndicator();
+            
+            // Start speech recognition
+            recognition.start();
+            
+            // Log for debugging
+            console.log('Voice search activated. Listening...');
+        });
+        
+        // Handle results from voice recognition
+        recognition.onresult = function(event) {
+            // Get voice search query
+            const voiceQuery = event.results[0][0].transcript;
+            console.log('Voice search query:', voiceQuery);
+            
+            // Process natural language query
+            processVoiceQuery(voiceQuery);
+            
+            // Reset button
+            voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search by Voice';
+            voiceSearchButton.classList.remove('listening');
+            
+            // Remove listening indicator
+            removeListeningIndicator();
+        };
+        
+        // Handle speech recognition errors
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error:', event.error);
+            
+            // Reset button
+            voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search by Voice';
+            voiceSearchButton.classList.remove('listening');
+            
+            // Remove listening indicator
+            removeListeningIndicator();
+            
+            // Show error message
+            showErrorMessage(event.error);
+        };
+        
+        // Handle end of speech recognition
+        recognition.onend = function() {
+            // Reset button if still in listening state
+            if (voiceSearchButton.classList.contains('listening')) {
+                voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search by Voice';
+                voiceSearchButton.classList.remove('listening');
+                
+                // Remove listening indicator if it's still there
+                removeListeningIndicator();
+            }
+        };
+    } else {
+        // Browser doesn't support speech recognition
+        console.error('Speech recognition not supported in this browser');
+        
+        // Hide voice search button
+        voiceSearchButton.style.display = 'none';
+    }
+}
+
+/**
+ * Process voice query to extract search parameters
+ * @param {string} query - The voice query to process
+ */
+function processVoiceQuery(query) {
+    // Convert to lowercase for easier matching
+    const lowerQuery = query.toLowerCase();
+    
+    // Initialize search parameters
+    let priceMin = '';
+    let priceMax = '';
+    let bedrooms = '';
+    let bathrooms = '';
+    
+    // Extract price information
+    if (lowerQuery.includes('under') || lowerQuery.includes('less than')) {
+        if (lowerQuery.includes('million') || lowerQuery.includes('mil')) {
+            // Handle "under X million" type queries
+            const match = lowerQuery.match(/(?:under|less than)\s+(\d+(?:\.\d+)?)\s*(?:million|mil)/i);
+            if (match) {
+                const amount = parseFloat(match[1]);
+                priceMax = Math.round(amount * 1000000);
+            }
+        } else {
+            // Handle direct dollar amounts
+            const match = lowerQuery.match(/(?:under|less than)\s+\$?(\d+(?:,\d+)?(?:\.\d+)?)/i);
+            if (match) {
+                priceMax = match[1].replace(/,/g, '');
+            }
+        }
+    }
+    
+    if (lowerQuery.includes('over') || lowerQuery.includes('more than') || lowerQuery.includes('at least')) {
+        if (lowerQuery.includes('million') || lowerQuery.includes('mil')) {
+            // Handle "over X million" type queries
+            const match = lowerQuery.match(/(?:over|more than|at least)\s+(\d+(?:\.\d+)?)\s*(?:million|mil)/i);
+            if (match) {
+                const amount = parseFloat(match[1]);
+                priceMin = Math.round(amount * 1000000);
+            }
+        } else {
+            // Handle direct dollar amounts
+            const match = lowerQuery.match(/(?:over|more than|at least)\s+\$?(\d+(?:,\d+)?(?:\.\d+)?)/i);
+            if (match) {
+                priceMin = match[1].replace(/,/g, '');
+            }
+        }
+    }
+    
+    // Extract bedroom information
+    const bedroomMatch = lowerQuery.match(/(\d+)\s*(?:bedroom|bed|br)/i);
+    if (bedroomMatch) {
+        bedrooms = bedroomMatch[1];
+    }
+    
+    // Extract bathroom information
+    const bathroomMatch = lowerQuery.match(/(\d+(?:\.\d+)?)\s*(?:bathroom|bath|ba)/i);
+    if (bathroomMatch) {
+        bathrooms = bathroomMatch[1];
+    }
+    
+    // Set form values
+    if (priceMin || priceMax) {
+        // For simplicity, map to one of our predefined price ranges
+        const priceSelect = document.getElementById('price-range');
+        if (priceSelect) {
+            if (priceMin >= 2000000 || priceMax >= 2000000) {
+                priceSelect.value = '2000000+';
+            } else if (priceMin >= 1500000 || (priceMax >= 1500000 && priceMax < 2000000)) {
+                priceSelect.value = '1500000-2000000';
+            } else if (priceMin >= 1000000 || (priceMax >= 1000000 && priceMax < 1500000)) {
+                priceSelect.value = '1000000-1500000';
+            } else if (priceMin >= 750000 || (priceMax >= 750000 && priceMax < 1000000)) {
+                priceSelect.value = '750000-1000000';
+            }
+        }
+    }
+    
+    if (bedrooms) {
+        const bedroomsSelect = document.getElementById('bedrooms');
+        if (bedroomsSelect) {
+            bedroomsSelect.value = bedrooms;
+        }
+    }
+    
+    if (bathrooms) {
+        const bathroomsSelect = document.getElementById('bathrooms');
+        if (bathroomsSelect) {
+            bathroomsSelect.value = bathrooms;
+        }
+    }
+    
+    // Show search feedback
+    showSearchFeedback(query, { priceMin, priceMax, bedrooms, bathrooms });
+    
+    // Submit the form
+    setTimeout(() => {
+        const searchForm = document.getElementById('property-search-form');
+        if (searchForm) {
+            searchForm.dispatchEvent(new Event('submit'));
+        }
+    }, 1500); // Delay to allow user to see feedback
+}
+
+/**
+ * Show feedback for voice search
+ * @param {string} query - Original voice query
+ * @param {Object} params - Search parameters extracted
+ */
+function showSearchFeedback(query, params) {
+    // Create feedback element
+    const feedbackEl = document.createElement('div');
+    feedbackEl.className = 'voice-search-feedback';
+    
+    // Build feedback content
+    let content = `
+        <h3>I heard:</h3>
+        <p class="query">"${query}"</p>
+        <h3>Searching for:</h3>
+        <ul>
+    `;
+    
+    // Add search parameters to feedback
+    if (params.priceMin && params.priceMax) {
+        content += `<li>Price between ${formatNumber(params.priceMin)} and ${formatNumber(params.priceMax)}</li>`;
+    } else if (params.priceMin) {
+        content += `<li>Price above ${formatNumber(params.priceMin)}</li>`;
+    } else if (params.priceMax) {
+        content += `<li>Price below ${formatNumber(params.priceMax)}</li>`;
+    }
+    
+    if (params.bedrooms) {
+        content += `<li>${params.bedrooms} bedroom${params.bedrooms !== '1' ? 's' : ''}</li>`;
+    }
+    
+    if (params.bathrooms) {
+        content += `<li>${params.bathrooms} bathroom${params.bathrooms !== '1' ? 's' : ''}</li>`;
+    }
+    
+    // If no parameters were extracted
+    if (!params.priceMin && !params.priceMax && !params.bedrooms && !params.bathrooms) {
+        content += `<li>Showing all available properties</li>`;
+    }
+    
+    content += `
+        </ul>
+    `;
+    
+    // Set content and add to page
+    feedbackEl.innerHTML = content;
+    document.body.appendChild(feedbackEl);
+    
+    // Remove feedback after delay
+    setTimeout(() => {
+        feedbackEl.classList.add('fade-out');
+        setTimeout(() => {
+            feedbackEl.remove();
+        }, 300);
+    }, 3000);
+}
+
+/**
+ * Format number with commas
+ * @param {string|number} number - Number to format
+ * @returns {string} - Formatted number
+ */
+function formatNumber(number) {
+    return new Intl.NumberFormat('en-US').format(number);
+}
+
+/**
+ * Show listening indicator
+ */
+function showListeningIndicator() {
+    // Create indicator if it doesn't exist
+    if (!document.querySelector('.listening-indicator')) {
+        const indicator = document.createElement('div');
+        indicator.className = 'listening-indicator';
+        indicator.innerHTML = `
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="mic-icon"><i class="fas fa-microphone"></i></div>
+            <div class="listening-text">Listening...</div>
+        `;
+        document.body.appendChild(indicator);
+        
+        // Add styles if not already in document
+        if (!document.getElementById('voice-search-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'voice-search-styles';
+            styles.textContent = `
+                .listening-indicator {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 150px;
+                    height: 150px;
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                }
+                
+                .ripple {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    border: 2px solid #2c5282;
+                    opacity: 0;
+                    animation: ripple 2s infinite;
+                }
+                
+                .ripple:nth-child(2) {
+                    animation-delay: 0.5s;
+                }
+                
+                .ripple:nth-child(3) {
+                    animation-delay: 1s;
+                }
+                
+                @keyframes ripple {
+                    0% {
+                        transform: scale(0.8);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: scale(1.5);
+                        opacity: 0;
+                    }
+                }
+                
+                .mic-icon {
+                    width: 60px;
+                    height: 60px;
+                    background-color: #2c5282;
+                    color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                    animation: pulse 1.5s infinite;
+                }
+                
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                    100% { transform: scale(1); }
+                }
+                
+                .listening-text {
+                    color: #333;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                
+                .voice-search-feedback {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    max-width: 400px;
+                    width: 90%;
+                    text-align: left;
+                    animation: fadeIn 0.3s;
+                }
+                
+                .voice-search-feedback h3 {
+                    color: #2c5282;
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    font-size: 18px;
+                }
+                
+                .voice-search-feedback p.query {
+                    font-style: italic;
+                    margin-bottom: 15px;
+                    color: #666;
+                }
+                
+                .voice-search-feedback ul {
+                    margin: 0;
+                    padding: 0 0 0 20px;
+                }
+                
+                .voice-search-feedback li {
+                    margin-bottom: 5px;
+                }
+                
+                .voice-search-error {
+                    position: fixed;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    animation: fadeIn 0.3s;
+                }
+                
+                .voice-search-error i {
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                .fade-out {
+                    animation: fadeOut 0.3s forwards;
+                }
+                
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(styles);
+        }
+    }
+}
+
+/**
+ * Remove listening indicator
+ */
+function removeListeningIndicator() {
+    const indicator = document.querySelector('.listening-indicator');
+    if (indicator) {
+        indicator.classList.add('fade-out');
+        setTimeout(() => {
+            indicator.remove();
+        }, 300);
+    }
+}
+
+/**
+ * Show error message
+ * @param {string} error - Error type
+ */
+function showErrorMessage(error) {
+    // Create error element
+    const errorEl = document.createElement('div');
+    errorEl.className = 'voice-search-error';
+    
+    // Set error message based on error type
+    let message = '';
+    switch (error) {
+        case 'no-speech':
+            message = 'No speech was detected. Please try again.';
+            break;
+        case 'audio-capture':
+            message = 'No microphone was found. Ensure it is plugged in and allowed.';
+            break;
+        case 'not-allowed':
+            message = 'Microphone access was not allowed. Please enable it in your browser settings.';
+            break;
+        default:
+            message = 'An error occurred with voice search. Please try again.';
+    }
+    
+    // Set content
+    errorEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    
+    // Add to page
+    document.body.appendChild(errorEl);
+    
+    // Remove after delay
+    setTimeout(() => {
+        errorEl.classList.add('fade-out');
+        setTimeout(() => {
+            errorEl.remove();
+        }, 300);
+    }, 4000);
+}
+
+// Export function for external use
+export { initVoiceSearch, processVoiceQuery };

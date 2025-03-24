@@ -146,15 +146,15 @@
                 <a href="#virtual-tour" class="cta-button secondary">Take Virtual Tour</a>
             </div>
             <div class="hero-search">
-                <div class="search-filters">
-                    <div class="filter-group">
-                        <label>Price Range</label>
-                        <select>
-                            <option>Any Price</option>
-                            <option>$750k - $1M</option>
-                            <option>$1M - $1.5M</option>
-                            <option>$1.5M - $2M</option>
-                            <option>$2M+</option>
+                <form action="#properties" id="property-search-form" class="property-search-form">
+                    <div class="search-group">
+                        <label for="price-range">Price Range</label>
+                        <select id="price-range" name="price-range">
+                            <option value="">Any Price</option>
+                            <option value="750000-1000000">$750k - $1M</option>
+                            <option value="1000000-1500000">$1M - $1.5M</option>
+                            <option value="1500000-2000000">$1.5M - $2M</option>
+                            <option value="2000000+">$2M+</option>
                         </select>
                     </div>
                     <div class="filter-group">
@@ -176,7 +176,7 @@
                         </select>
                     </div>
                     <button class="search-button">Find Homes</button>
-                </div>
+                </form>
                 <realscout-simple-search 
                     agent-encoded-id="QWdlbnQtMjI1MDUw"
                     placeholder="Search by address, city, or zip code"
@@ -216,29 +216,17 @@
                 <h2>Featured Lone Mountain Properties</h2>
                 <p>Explore our handpicked selection of luxury homes with spectacular mountain views</p>
             </div>
-            <div class="rs-loading">Loading properties...</div>
-            <realscout-office-listings 
-                agent-encoded-id="QWdlbnQtMjI1MDUw" 
-                sort-order="NEWEST" 
-                listing-status="For Sale" 
-                property-types="SFR,TC" 
-                price-min="500000"
-                data-version="v3"
-                show-filters="true"
-                show-sort="true"
-                show-pagination="true"
-                items-per-page="6">
-            </realscout-office-listings>
-            <div class="properties-grid" id="properties-grid">
-                <!-- Properties will be loaded dynamically -->
-            </div>
-            <div class="view-all-container">
-                <a href="all-properties.html" class="view-all-button">View All Properties</a>
+            <div id="properties-grid" class="properties-grid">
+                <!-- RealScout widget will be inserted here -->
+                <div class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Loading properties...</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Neighborhood Section (NEW) -->
+    <!-- Neighborhood Section -->
     <section id="neighborhood" class="neighborhood-section">
         <div class="container">
             <div class="section-title">
@@ -250,7 +238,7 @@
                     <div class="feature-icon">
                         <i class="fas fa-mountain"></i>
                     </div>
-                    <h3>Scenic Surroundings</h3>
+                    <h3>Scenic Views</h3>
                     <p>Nestled against the picturesque Lone Mountain, residents enjoy breathtaking views and access to hiking trails just minutes from their doorstep.</p>
                 </div>
                 <div class="feature-card">
@@ -275,115 +263,6 @@
                     <p>Conveniently located with easy access to the 215 Beltway, just 15 minutes from Downtown Summerlin and 20 minutes from the Las Vegas Strip.</p>
                 </div>
             </div>
-            <div class="neighborhood-map">
-                <h3>Explore the Area</h3>
-                <div class="map-container" id="neighborhood-map">
-                    <!-- Map will be loaded here via JavaScript -->
-                    <img src="assets/images/properties/lone-mountain-map.jpg" alt="Map of Lone Mountain area in Las Vegas" class="placeholder-map">
-                </div>
-                <div class="map-legend">
-                    <div class="legend-item">
-                        <span class="legend-icon home"></span>
-                        <span class="legend-text">Lone Mountain Vistas</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-icon school"></span>
-                        <span class="legend-text">Schools</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-icon shopping"></span>
-                        <span class="legend-text">Shopping</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-icon park"></span>
-                        <span class="legend-text">Parks & Recreation</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Virtual Tour Section (NEW) -->
-    <section id="virtual-tour" class="virtual-tour-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Experience Lone Mountain Vistas</h2>
-                <p>Take a virtual tour of our community and featured properties</p>
-            </div>
-            <div class="virtual-tour-container">
-                <div class="tour-video">
-                    <iframe width="100%" height="480" src="about:blank" data-src="https://www.youtube.com/embed/VIDEO_ID" title="Lone Mountain Vistas Virtual Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="tour-features">
-                    <div class="tour-feature">
-                        <i class="fas fa-vr-cardboard"></i>
-                        <h3>360° Virtual Tours</h3>
-                        <p>Explore properties from every angle with our immersive virtual tours.</p>
-                    </div>
-                    <div class="tour-feature">
-                        <i class="fas fa-drone"></i>
-                        <h3>Aerial Drone Footage</h3>
-                        <p>See the stunning mountain views and community layout from above.</p>
-                    </div>
-                    <div class="tour-feature">
-                        <i class="fas fa-sun"></i>
-                        <h3>Day/Night Viewing</h3>
-                        <p>Experience properties in different lighting conditions.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section (NEW) -->
-    <section id="testimonials" class="testimonials-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Residents Say</h2>
-                <p>Hear from those who call Lone Mountain Vistas home</p>
-            </div>
-            <div class="testimonials-slider" id="testimonials-slider">
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Moving to Lone Mountain Vistas was the best decision we made. The views are spectacular, and we love being so close to outdoor activities while still having all the conveniences of the city nearby."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/properties/testimonial-1.jpg" alt="Sarah and Michael Johnson" class="author-image">
-                        <div class="author-info">
-                            <h4>Sarah & Michael Johnson</h4>
-                            <p>Residents since 2023</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"As a retiree, I wanted a peaceful community with natural beauty but close to amenities. Lone Mountain Vistas delivers that perfect balance. The sunsets over the mountain are worth every penny."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/properties/testimonial-2.jpg" alt="Robert Chen" class="author-image">
-                        <div class="author-info">
-                            <h4>Robert Chen</h4>
-                            <p>Resident since 2022</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Our family loves the schools in this area, and the community feel is unlike anywhere else in Las Vegas. We can hike Lone Mountain in the morning and be at a world-class restaurant by evening."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/properties/testimonial-3.jpg" alt="The Garcia Family" class="author-image">
-                        <div class="author-info">
-                            <h4>The Garcia Family</h4>
-                            <p>Residents since 2021</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-controls">
-                <button id="prev-testimonial" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
-                <button id="next-testimonial" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
-            </div>
         </div>
     </section>
 
@@ -407,72 +286,6 @@
                     </div>
                 </div>
                 <div class="about-image"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section for Voice Search (NEW) -->
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know about Lone Mountain Vistas</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What is the price range of homes in Lone Mountain Vistas?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Homes in Lone Mountain Vistas typically range from $900,000 to $2.5 million, depending on size, location, views, and features. Our current inventory includes properties from 2,600 to 4,800 square feet.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What schools serve the Lone Mountain Vistas area?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Lone Mountain Vistas is served by the Clark County School District, with Lone Mountain Elementary School, Ernest Becker Middle School, and Centennial High School as the zoned public schools. Several top-rated private schools are also within a short drive.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What amenities are available to Lone Mountain Vistas residents?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Residents enjoy access to community trails, parks, and recreation areas. Many homes feature private pools, outdoor kitchens, and entertainment spaces. The community is minutes from Lone Mountain Regional Park, which offers hiking trails, sports fields, and picnic areas.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        How far is Lone Mountain Vistas from the Las Vegas Strip?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Lone Mountain Vistas is approximately 15-20 minutes (12 miles) from the Las Vegas Strip, offering the perfect balance of proximity to world-class entertainment while maintaining a peaceful, suburban atmosphere.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What are property taxes like in the Lone Mountain area?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Property taxes in Clark County, Nevada are among the lowest in the country, typically ranging from 0.5% to 0.75% of the assessed value. Nevada has no state income tax, making it an attractive option for homebuyers.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Is there an HOA for Lone Mountain Vistas?
-                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, Lone Mountain Vistas has a homeowners association that maintains community standards, common areas, and amenities. HOA fees typically range from $150-$300 per month, depending on the specific neighborhood within the community.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -548,12 +361,6 @@
                             <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: By appointment</p>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://youtube.com/lonemountainvistas" aria-label="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -566,9 +373,6 @@
                 <div class="footer-column">
                     <h3>Lone Mountain Vistas</h3>
                     <p>Your gateway to luxury living in Las Vegas' most prestigious mountain community.</p>
-                    <div class="footer-logo">
-                        <img src="assets/images/logo-white.png" alt="Lone Mountain Vistas Logo" width="180" height="60">
-                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -578,18 +382,6 @@
                         <li><a href="#neighborhood">Neighborhood</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Popular Searches</h3>
-                    <ul>
-                        <li><a href="search.html?feature=mountain-view">Homes with Mountain Views</a></li>
-                        <li><a href="search.html?feature=pool">Properties with Pools</a></li>
-                        <li><a href="search.html?min-sqft=3000">3,000+ Sq Ft Homes</a></li>
-                        <li><a href="search.html?beds=4">4+ Bedroom Properties</a></li>
-                        <li><a href="search.html?type=new-construction">New Construction</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -601,89 +393,73 @@
                         <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</li>
                     </ul>
                     <div class="footer-social">
-                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://youtube.com/lonemountainvistas" aria-label="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Lone Mountain Vistas. All rights reserved. REALTOR® - Dr. Janet Duffy, License# S.0197614.LLC</p>
-                <div class="footer-disclaimer">
-                    <p>Each office independently owned and operated. Not intended as solicitation if your property is already listed by another broker.</p>
-                </div>
             </div>
         </div>
     </footer>
-
-    <!-- Cookie Consent -->
-    <div class="cookie-consent" id="cookie-consent">
-        <div class="cookie-content">
-            <p>This website uses cookies to ensure you get the best experience. <a href="privacy-policy.html">Learn more</a></p>
-            <div class="cookie-buttons">
-                <button id="cookie-accept" class="cookie-button accept">Accept All</button>
-                <button id="cookie-settings" class="cookie-button settings">Cookie Settings</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
     <!-- Scripts -->
     <script src="js/config.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/voice-search.js"></script>
     
-    <!-- Structured Data for Property Listings -->
-    <script type="application/ld+json" id="property-listings-schema">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": "5678 Sierra Sunset Drive",
-            "description": "Stunning contemporary home with panoramic mountain views, featuring an open floor plan, gourmet kitchen, and resort-style backyard.",
-            "offers": {
-              "@type": "Offer",
-              "price": "1250000",
-              "priceCurrency": "USD"
+    <!-- RealScout Implementation -->
+    <script type="module">
+        import { initRealScout } from './js/realscout-config.js';
+        
+        // Initialize RealScout when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize RealScout Widget
+            initRealScout().catch(error => {
+                console.error('Failed to initialize RealScout:', error);
+            });
+            
+            // Handle property search form submission
+            const searchForm = document.getElementById('property-search-form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Scroll to properties section
+                    document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Get form values
+                    const priceRange = document.getElementById('price-range').value;
+                    const bedrooms = document.getElementById('bedrooms').value;
+                    const bathrooms = document.getElementById('bathrooms').value;
+                    
+                    // Import the needed function
+                    import('./js/realscout-config.js').then(module => {
+                        const { createRealScoutWidget } = module;
+                        
+                        // Create options object
+                        const options = {
+                            'sort-order': 'NEWEST'
+                        };
+                        
+                        // Add filters if selected
+                        if (priceRange) {
+                            const [min, max] = priceRange.split('-');
+                            options['price-min'] = min;
+                            if (max && !max.includes('+')) options['price-max'] = max;
+                        }
+                        
+                        if (bedrooms) options['beds-min'] = bedrooms;
+                        if (bathrooms) options['baths-min'] = bathrooms;
+                        
+                        // Create widget with filters
+                        createRealScoutWidget('properties-grid', options);
+                    });
+                });
             }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "8901 Desert Willow Court",
-            "description": "Exquisite Mediterranean-inspired estate featuring high ceilings, marble flooring, chef's kitchen, home theater, and infinity pool.",
-            "offers": {
-              "@type": "Offer",
-              "price": "1750000",
-              "priceCurrency": "USD"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": "1234 Golden Canyon Way",
-            "description": "Modern craftsman with incredible attention to detail, featuring hardwood floors, stone accents, and a seamless indoor-outdoor living experience.",
-            "offers": {
-              "@type": "Offer",
-              "price": "985000",
-              "priceCurrency": "USD"
-            }
-          }
-        }
-      ]
-    }
+        });
     </script>
+</body>
+</html>

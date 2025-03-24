@@ -10,11 +10,11 @@ const organizationSchema = {
   "logo": "https://lonemountainvistas.com/assets/images/logo.png",
   "image": "https://lonemountainvistas.com/assets/images/properties/lone-mountain-view.jpg",
   "description": "Luxury homes with stunning mountain views in the prestigious Lone Mountain community of Las Vegas, Nevada.",
-  "telephone": "(702) 555-1234",
+  "telephone": "(702) 500-0448",
   "email": "DrDuffy@bhhsnv.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Mountain View Drive",
+    "streetAddress": "3350 Novat St #120",
     "addressLocality": "Las Vegas",
     "addressRegion": "NV",
     "postalCode": "89129",
@@ -178,7 +178,7 @@ const individualPropertySchema = {
   "broker": {
     "@type": "RealEstateAgent",
     "name": "Dr. Janet Duffy",
-    "telephone": "(702) 555-1234",
+    "telephone": "(702) 500-0448",
     "email": "DrDuffy@bhhsnv.com"
   }
 };
@@ -293,7 +293,7 @@ const localBusinessSchema = {
   "description": "Luxury real estate office specializing in properties in the Lone Mountain area of Las Vegas.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Mountain View Drive",
+    "streetAddress": "3350 Novat St #120",
     "addressLocality": "Las Vegas",
     "addressRegion": "NV",
     "postalCode": "89129",
@@ -304,7 +304,7 @@ const localBusinessSchema = {
     "latitude": "36.2250",
     "longitude": "-115.2893"
   },
-  "telephone": "(702) 555-1234",
+  "telephone": "(702) 500-0448",
   "email": "DrDuffy@bhhsnv.com",
   "openingHoursSpecification": [
     {
@@ -362,7 +362,7 @@ const brokerSchema = {
   "name": "Dr. Janet Duffy",
   "jobTitle": "REALTOR®",
   "description": "Specializing in luxury properties in the Lone Mountain area for over 15 years",
-  "telephone": "(702) 555-1234",
+  "telephone": "(702) 500-0448",
   "email": "DrDuffy@bhhsnv.com",
   "url": "https://lonemountainvistas.com/about.html",
   "image": "https://lonemountainvistas.com/assets/images/properties/janet-duffy.jpg",
@@ -371,7 +371,7 @@ const brokerSchema = {
     "name": "Lone Mountain Vistas Real Estate Office",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Mountain View Drive",
+      "streetAddress": "3350 Novat St #120",
       "addressLocality": "Las Vegas",
       "addressRegion": "NV",
       "postalCode": "89129",
