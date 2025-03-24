@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore premium luxury estates in Lone Mountain, Las Vegas. Browse our most exclusive properties featuring stunning mountain views, custom amenities, and architectural excellence.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Premium Luxury Estates in Lone Mountain | Las Vegas Real Estate">
+    <meta property="og:description" content="Discover exclusive luxury estates in the prestigious Lone Mountain area of Las Vegas. Premium homes with exceptional features and mountain views.">
+    <meta property="og:image" content="https://lonemountainvistas.com/assets/images/properties/premium-estate.jpg">
+    <meta property="og:url" content="https://lonemountainvistas.com/price-high-low.html">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="luxury estates Lone Mountain, premium properties Las Vegas, high-end real estate, luxury homes with mountain views, multi-million dollar homes Las Vegas">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dr. Janet Duffy">
+    
+    <!-- Canonical URL -->
+    <meta rel="canonical" href="https://lonemountainvistas.com/price-high-low.html">
+    
+    <title>Premium Luxury Estates | Lone Mountain Las Vegas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- RealScout Widget Script -->
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    
+    <!-- RealScout Widget Styling -->
+    <style>
+      realscout-office-listings {
+        --rs-listing-divider-color: rgb(101, 141, 172);
+        width: 100%;
+        margin-bottom: 40px;
+      }
+      
+      /* Page specific styles */
+      .listings-header {
+        background-color: #1a365d;
+        padding: 80px 0;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #fff;
+        position: relative;
+      }
+      
+      .listings-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.8)), url('../assets/images/properties/luxury-home-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+      }
+      
+      .listings-header .container {
+        position: relative;
+        z-index: 1;
+      }
+      
+      .listings-header h1 {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 42px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      
+      .listings-header p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #f5f5f5;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      
+      .luxury-badge {
+        display: inline-block;
+        background-color: #e2a23b;
+        color: #1a365d;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+      }
+      
+      .voice-search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0;
+      }
+      
+      .voice-search-button {
+        display: flex;
+        align-items: center;
+        background-color: #e2a23b;
+        color: #1a365d;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+      
+      .voice-search-button i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      
+      .voice-search-button:hover {
+        background-color: #d69429;
+        transform: scale(1.05);
+      }
+      
+      .listings-section {
+        padding: 60px 0;
+      }
+      
+      .filters-section {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 8px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+      
+      .filters-title {
+        margin-bottom: 20px;
+        color: #2c5282;
+        font-size: 22px;
+        text-align: center;
+        position: relative;
+      }
+      
+      .filters-title::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: #e2a23b;
+        margin: 10px auto 0;
+      }
+      
+      .filters-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      
+      .filter-group {
+        flex: 1 1 200px;
+      }
+      
+      .filter-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #2c5282;
+      }
+      
+      .filter-group select,
+      .filter-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        color: #333;
+      }
+      
+      .filter-button {
+        background-color: #2c5282;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-weight: bold;
+        font-size: 16px;
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto 0;
+        display: block;
+      }
+      
+      .filter-button:hover {
+        background-color: #1a365d;
+      }
+      
+      /* Breadcrumbs */
+      .breadcrumbs {
+        padding: 15px 0;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .breadcrumbs ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .breadcrumbs li {
+        display: flex;
+        align-items: center;
+      }
+      
+      .breadcrumbs li:not(:last-child)::after {
+        content: '/';
+        margin: 0 10px;
+        color: #ccc;
+      }
+      
+      .breadcrumbs a {
+        color: #666;
+        text-decoration: none;
+      }
+      
+      .breadcrumbs a:hover {
+        color: #2c5282;
+      }
+      
+      .breadcrumbs .current {
+        color: #2c5282;
+        font-weight: 500;
+      }
+      
+      /* Luxury Features Section */
+      .luxury-features {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+        margin: 60px 0;
+      }
+      
+      .luxury-features-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .luxury-features-title h2 {
+        color: #2c5282;
+        margin-bottom: 15px;
+      }
+      
+      .luxury-features-title p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #666;
+      }
+      
+      .luxury-features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      
+      .luxury-feature {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .luxury-feature-icon {
+        width: 80px;
+        height: 80px;
+        background-color: #1a365d;
+        color: #e2a23b;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+      
+      .luxury-feature h3 {
+        color: #2c5282;
+        margin-bottom: 10px;
+      }
+      
+      .luxury-feature p {
+        color: #666;
+        line-height: 1.6;
+      }
+      
+      /* Related Properties */
+      .related-pages {
+        margin-top: 60px;
+      }
+      
+      .related-pages h3 {
+        color: #2c5282;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .related-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+      
+      .related-link {
+        background-color: #f8f9fa;
+        color: #2c5282;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 1px solid #eee;
+      }
+      
+      .related-link:hover {
+        background-color: #2c5282;
+        color: white;
+      }
+    </style>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Premium Luxury Estates in Lone Mountain",
+      "description": "Exclusive high-end properties in the Lone Mountain area of Las Vegas, Nevada",
+      "url": "https://lonemountainvistas.com/price-high-low.html",
+      "numberOfItems": 10,
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://lonemountainvistas.com/property-detail.html?id=1",
+          "name": "Luxury Estate in Lone Mountain",
+          "description": "Premium luxury property with mountain views in Lone Mountain"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lonemountainvistas.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Properties",
+          "item": "https://lonemountainvistas.com/all-properties.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Premium Estates",
+          "item": "https://lonemountainvistas.com/price-high-low.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to Main Content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Lone Mountain Vistas</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#properties">Properties</a></li>
+                    <li><a href="index.html#neighborhood">Neighborhood</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="tel:7025551234" class="phone-link"><i class="fas fa-phone"></i> (702) 555-1234</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-properties.html">Properties</a></li>
+                <li><span class="current">Premium Estates</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Listings Header -->
+    <section class="listings-header">
+        <div class="container">
+            <span class="luxury-badge">Premium Collection</span>
+            <h1 id="main-content">Lone Mountain's Finest Luxury Estates</h1>
+            <p>Discover our collection of exceptional luxury estates in one of Las Vegas' most coveted locations. From architectural masterpieces to custom-designed residences, these homes represent the pinnacle of luxury living with unparalleled craftsmanship and stunning mountain vistas.</p>
+            
+            <!-- Voice Search Button -->
+            <div class="voice-search-container">
+                <button id="voice-search-button" class="voice-search-button" aria-label="Search premium properties by voice">
+                    <i class="fas fa-microphone"></i> Search Premium Properties by Voice
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Listings Section -->
+    <section class="listings-section">
+        <div class="container">
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <h3 class="filters-title">Refine Your Premium Property Search</h3>
+                <form class="filters-form">
+                    <div class="filter-group">
+                        <label for="price-range">Price Range</label>
+                        <select id="price-range" name="price-range">
+                            <option value="">Any Price</option>
+                            <option value="1000000-1500000">$1M - $1.5M</option>
+                            <option value="1500000-2000000">$1.5M - $2M</option>
+                            <option value="2000000-3000000">$2M - $3M</option>
+                            <option value="3000000+">$3M+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms" name="bedrooms">
+                            <option value="">Any</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                            <option value="6">6+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <select id="bathrooms" name="bathrooms">
+                            <option value="">Any</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sq-feet">Square Feet</label>
+                        <select id="sq-feet" name="sq-feet">
+                            <option value="">Any</option>
+                            <option value="3000">3,000+ sq ft</option>
+                            <option value="4000">4,000+ sq ft</option>
+                            <option value="5000">5,000+ sq ft</option>
+                            <option value="6000">6,000+ sq ft</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="features">Luxury Features</label>
+                        <select id="features" name="features">
+                            <option value="">Any</option>
+                            <option value="pool">Pool & Spa</option>
+                            <option value="theater">Home Theater</option>
+                            <option value="wine-cellar">Wine Cellar</option>
+                            <option value="smart-home">Smart Home Technology</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="filter-button">Apply Filters</button>
+                </form>
+            </div>
+            
+            <!-- RealScout Listings Widget -->
+            <realscout-office-listings 
+                agent-encoded-id="QWdlbnQtMjI1MDUw" 
+                sort-order="PRICE_HIGH" 
+                listing-status="For Sale" 
+                property-types="SFR,MF,TC,OTHER,MOBILE" 
+                price-min="500000">
+            </realscout-office-listings>
+        </div>
+    </section>
+    
+    <!-- Luxury Features Section -->
+    <section class="luxury-features">
+        <div class="container">
+            <div class="luxury-features-title">
+                <h2>Exclusive Amenities in Our Premium Estates</h2>
+                <p>Our luxury properties feature these exceptional amenities that define refined living in Lone Mountain</p>
+            </div>
+            <div class="luxury-features-grid">
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3>Resort-Style Pools</h3>
+                    <p>Custom infinity-edge pools with integrated spas, water features, and expansive pool decks perfect for entertaining with mountain views.</p>
+                </div>
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Home Theaters</h3>
+                    <p>State-of-the-art home cinema rooms with professional-grade audio systems, tiered seating, and immersive viewing experiences.</p>
+                </div>
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <h3>Wine Cellars</h3>
+                    <p>Temperature-controlled wine rooms with custom racking systems, tasting areas, and storage for extensive collections.</p>
+                </div>
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Smart Home Technology</h3>
+                    <p>Comprehensive home automation systems controlling security, climate, lighting, entertainment, and more from anywhere in the world.</p>
+                </div>
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Chef's Kitchens</h3>
+                    <p>Professional-grade kitchens featuring top-tier appliances, custom cabinetry, expansive islands, and butler's pantries.</p>
+                </div>
+                <div class="luxury-feature">
+                    <div class="luxury-feature-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Panoramic Views</h3>
+                    <p>Strategic property placement and architectural design to maximize stunning views of Lone Mountain and the Las Vegas skyline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Property Spotlight -->
+    <section class="listings-section">
+        <div class="container">
+            <!-- Related Pages -->
+            <div class="related-pages">
+                <h3>Explore More Properties</h3>
+                <div class="related-links">
+                    <a href="newest-listings.html" class="related-link">Newest Listings</a>
+                    <a href="price-low-high.html" class="related-link">Affordable Luxury</a>
+                    <a href="sold-properties.html" class="related-link">Recently Sold Estates</a>
+                    <a href="all-properties.html" class="related-link">All Available Properties</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section for SEO and Voice Search -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions About Premium Estates</h2>
+                <p>Learn more about luxury properties in Lone Mountain</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What defines a premium estate in Lone Mountain?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Premium estates in Lone Mountain typically feature exceptional craftsmanship, architectural significance, expansive square footage (usually 4,000+ square feet), custom design elements, and premium amenities such as resort-style pools, home theaters, wine cellars, and smart home technology. These properties are often situated on larger lots with strategic positioning to maximize mountain and city views.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What is the investment value of luxury homes in Lone Mountain?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Luxury properties in Lone Mountain have historically shown strong appreciation, with average values increasing approximately 8-12% annually over the past five years. The limited supply of premium homes, combined with the desirable location, prestigious schools, and proximity to amenities, creates a stable market for high-end real estate. Additionally, Nevada's favorable tax environment makes these properties particularly attractive to high-net-worth individuals relocating from higher-tax states.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Are private showings available for premium estates?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we offer private showings for all our premium estates. These appointments can include comprehensive property tours, meetings with architects or designers for specific properties, and detailed discussions about custom features. We can also arrange virtual tours for out-of-state buyers. To schedule a private showing, please contact Dr. Janet Duffy directly at (702) 555-1234.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lone Mountain Vistas</h3>
+                    <p>Your gateway to luxury living in Las Vegas' most prestigious mountain community.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#properties">Properties</a></li>
+                        <li><a href="index.html#neighborhood">Neighborhood</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="newest-listings.html">Newest Listings</a></li>
+                        <li><a href="price-low-high.html">Affordable Luxury</a></li>
+                        <li><a href="price-high-low.html">Premium Estates</a></li>
+                        <li><a href="sold-properties.html">Recently Sold</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Mountain View Drive, Las Vegas, NV 89129</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:7025551234">(702) 555-1234</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:DrDuffy@bhhsnv.com">DrDuffy@bhhsnv.com</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lone Mountain Vistas. All rights reserved. REALTOR® - Dr. Janet Duffy, License# S.0197614.LLC</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/voice-search.js"></script>
+    
+    <!-- Page-specific script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Voice search functionality
+            const voiceSearchButton = document.getElementById('voice-search-button');
+            
+            if (voiceSearchButton && 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                voiceSearchButton.addEventListener('click', function() {
+                    // Visual feedback that voice search is active
+                    this.innerHTML = '<i class="fas fa-microphone-alt"></i> Listening...';
+                    this.classList.add('listening');
+                    
+                    // Start recognition
+                    recognition.start();
+                });
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    console.log('Voice search query:', transcript);
+                    
+                    // Process the voice query - this would be expanded to actually filter results
+                    processVoiceQuery(transcript);
+                    
+                    // Reset button
+                    voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Premium Properties by Voice';
+                    voiceSearchButton.classList.remove('listening');
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error:', event.error);
+                    
+                    // Reset button
+                    voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Premium Properties by Voice';
+                    voiceSearchButton.classList.remove('listening');
+                    
+                    // Show error message
+                    alert('Voice recognition error: ' + event.error);
+                };
+                
+                recognition.onend = function() {
+                    // Reset button if recognition ends without result
+                    if (voiceSearchButton.classList.contains('listening')) {
+                        voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Premium Properties by Voice';
+                        voiceSearchButton.classList.remove('listening');
+                    }
+                };
+            } else {
+                // Hide voice search button if not supported
+                if (voiceSearchButton) {
+                    voiceSearchButton.style.display = 'none';
+                }
+            }
+            
+            // Simple voice query processor - would be expanded with actual filtering logic
+            function processVoiceQuery(query) {
+                // Convert to lowercase for easier matching
+                const lowerQuery = query.toLowerCase();
+                
+                // Extract price information
+                if (lowerQuery.includes('under 2 million') || lowerQuery.includes('less than 2 million')) {
+                    document.getElementById('price-range').value = '1500000-2000000';
+                } else if (lowerQuery.includes('over 2 million') || lowerQuery.includes('above 2 million')) {
+                    document.getElementById('price-range').value = '2000000-3000000';
+                } else if (lowerQuery.includes('over 3 million') || lowerQuery.includes('above 3 million')) {
+                    document.getElementById('price-range').value = '3000000+';
+                }
+                
+                // Extract bedroom information
+                if (lowerQuery.includes('4 bedroom') || lowerQuery.includes('4 bed')) {
+                    document.getElementById('bedrooms').value = '4';
+                } else if (lowerQuery.includes('5 bedroom') || lowerQuery.includes('5 bed')) {
+                    document.getElementById('bedrooms').value = '5';
+                } else if (lowerQuery.includes('6 bedroom') || lowerQuery.includes('6 bed') || lowerQuery.includes('six bedroom')) {
+                    document.getElementById('bedrooms').value = '6';
+                }
+                
+                // Extract bathroom information
+                if (lowerQuery.includes('3 bathroom') || lowerQuery.includes('3 bath')) {
+                    document.getElementById('bathrooms').value = '3';
+                } else if (lowerQuery.includes('4 bathroom') || lowerQuery.includes('4 bath')) {
+                    document.getElementById('bathrooms').value = '4';
+                } else if (lowerQuery.includes('5 bathroom') || lowerQuery.includes('5 bath')) {
+                    document.getElementById('bathrooms').value = '5';
+                }
+                
+                // Extract square footage information
+                if (lowerQuery.includes('4000 square feet') || lowerQuery.includes('4000 sq ft')) {
+                    document.getElementById('sq-feet').value = '4000';
+                } else if (lowerQuery.includes('5000 square feet') || lowerQuery.includes('5000 sq ft')) {
+                    document.getElementById('sq-feet').value = '5000';
+                } else if (lowerQuery.includes('6000 square feet') || lowerQuery.includes('6000 sq ft')) {
+                    document.getElementById('sq-feet').value = '6000';
+                }
+                
+                // Extract feature information
+                if (lowerQuery.includes('pool') || lowerQuery.includes('swimming pool')) {
+                    document.getElementById('features').value = 'pool';
+                } else if (lowerQuery.includes('theater') || lowerQuery.includes('home theater')) {
+                    document.getElementById('features').value = 'theater';
+                } else if (lowerQuery.includes('wine cellar')) {
+                    document.getElementById('features').value = 'wine-cellar';
+                } else if (lowerQuery.includes('smart home') || lowerQuery.includes('smart technology')) {
+                    document.getElementById('features').value = 'smart-home';
+                }
+                
+                // Submit the form to apply filters
+                document.querySelector('.filter-button').click();
+            }
+            
+            // FAQ functionality
+            const faqButtons = document.querySelectorAll('.faq-question');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Toggle aria-expanded attribute
+                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !expanded);
+                    
+                    // Toggle answer visibility
+                    const answer = this.nextElementSibling;
+                    if (expanded) {
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 20px';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.padding = '0 20px 20px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore premium luxury estates in Lone Mountain, Las Vegas. Browse our most exclusive properties featuring stunning mountain views, custom amenities, and architectural excellence.">
+    
+    <!-- Open Graph Tags

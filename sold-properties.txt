@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View recently sold homes in Lone Mountain, Las Vegas. Analyze market trends and property values in this prestigious community with homes starting at $500,000.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Recently Sold Homes in Lone Mountain | Las Vegas Real Estate">
+    <meta property="og:description" content="Browse recently sold properties in the exclusive Lone Mountain area. See market trends, sold prices, and property details.">
+    <meta property="og:image" content="https://lonemountainvistas.com/assets/images/properties/sold-home.jpg">
+    <meta property="og:url" content="https://lonemountainvistas.com/sold-properties.html">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="sold homes Lone Mountain, recent sales Las Vegas, luxury home prices, Lone Mountain property values, real estate market trends Las Vegas">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dr. Janet Duffy">
+    
+    <!-- Canonical URL -->
+    <meta rel="canonical" href="https://lonemountainvistas.com/sold-properties.html">
+    
+    <title>Recently Sold Homes | Lone Mountain Las Vegas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- RealScout Widget Script -->
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    
+    <!-- RealScout Widget Styling -->
+    <style>
+      realscout-office-listings {
+        --rs-listing-divider-color: rgb(101, 141, 172);
+        width: 100%;
+        margin-bottom: 40px;
+      }
+      
+      /* Page specific styles */
+      .listings-header {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      
+      .listings-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../assets/images/properties/sold-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+      }
+      
+      .listings-header .container {
+        position: relative;
+        z-index: 1;
+      }
+      
+      .listings-header h1 {
+        color: #2c5282;
+        margin-bottom: 15px;
+      }
+      
+      .listings-header p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #666;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      
+      .voice-search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0;
+      }
+      
+      .voice-search-button {
+        display: flex;
+        align-items: center;
+        background-color: #2c5282;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .voice-search-button i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      
+      .voice-search-button:hover {
+        background-color: #1a365d;
+        transform: scale(1.05);
+      }
+      
+      .listings-section {
+        padding: 60px 0;
+      }
+      
+      .filters-section {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+      
+      .filters-title {
+        margin-bottom: 15px;
+        color: #2c5282;
+        font-size: 18px;
+      }
+      
+      .filters-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      
+      .filter-group {
+        flex: 1 1 200px;
+      }
+      
+      .filter-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+      
+      .filter-group select,
+      .filter-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      
+      .filter-button {
+        background-color: #2c5282;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      .filter-button:hover {
+        background-color: #1a365d;
+      }
+      
+      /* Breadcrumbs */
+      .breadcrumbs {
+        padding: 15px 0;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .breadcrumbs ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .breadcrumbs li {
+        display: flex;
+        align-items: center;
+      }
+      
+      .breadcrumbs li:not(:last-child)::after {
+        content: '/';
+        margin: 0 10px;
+        color: #ccc;
+      }
+      
+      .breadcrumbs a {
+        color: #666;
+        text-decoration: none;
+      }
+      
+      .breadcrumbs a:hover {
+        color: #2c5282;
+      }
+      
+      .breadcrumbs .current {
+        color: #2c5282;
+        font-weight: 500;
+      }
+      
+      /* Market Trends Section */
+      .market-trends {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+        margin: 60px 0;
+      }
+      
+      .market-trends-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .market-trends-title h2 {
+        color: #2c5282;
+        margin-bottom: 15px;
+      }
+      
+      .market-trends-title p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #666;
+      }
+      
+      .trends-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+      
+      .trend-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        text-align: center;
+      }
+      
+      .trend-value {
+        font-size: 36px;
+        font-weight: bold;
+        color: #2c5282;
+        margin-bottom: 10px;
+      }
+      
+      .trend-label {
+        color: #666;
+        font-size: 16px;
+      }
+      
+      .trend-icon {
+        color: #2c5282;
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      
+      /* Related Properties */
+      .related-pages {
+        margin-top: 60px;
+      }
+      
+      .related-pages h3 {
+        color: #2c5282;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .related-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+      
+      .related-link {
+        background-color: #f8f9fa;
+        color: #2c5282;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 1px solid #eee;
+      }
+      
+      .related-link:hover {
+        background-color: #2c5282;
+        color: white;
+      }
+      
+      /* Sold Status Badge */
+      .sold-badge {
+        display: inline-block;
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+      }
+    </style>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Recently Sold Homes in Lone Mountain",
+      "description": "Properties that have recently sold in the Lone Mountain area of Las Vegas, Nevada",
+      "url": "https://lonemountainvistas.com/sold-properties.html",
+      "numberOfItems": 10,
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://lonemountainvistas.com/property-detail.html?id=1",
+          "name": "Sold Home in Lone Mountain",
+          "description": "Recently sold property in the Lone Mountain area"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lonemountainvistas.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Properties",
+          "item": "https://lonemountainvistas.com/all-properties.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recently Sold",
+          "item": "https://lonemountainvistas.com/sold-properties.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to Main Content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Lone Mountain Vistas</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#properties">Properties</a></li>
+                    <li><a href="index.html#neighborhood">Neighborhood</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="tel:7025551234" class="phone-link"><i class="fas fa-phone"></i> (702) 555-1234</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-properties.html">Properties</a></li>
+                <li><span class="current">Recently Sold</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Listings Header -->
+    <section class="listings-header">
+        <div class="container">
+            <span class="sold-badge">Recently Sold</span>
+            <h1 id="main-content">Recently Sold Homes in Lone Mountain</h1>
+            <p>Stay informed about the local real estate market by exploring our recently sold properties in Lone Mountain. These listings provide valuable insights into current market trends, property values, and buyer preferences in this sought-after Las Vegas community.</p>
+            
+            <!-- Voice Search Button -->
+            <div class="voice-search-container">
+                <button id="voice-search-button" class="voice-search-button" aria-label="Search sold properties by voice">
+                    <i class="fas fa-microphone"></i> Search Sold Properties by Voice
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Market Trends Section -->
+    <section class="market-trends">
+        <div class="container">
+            <div class="market-trends-title">
+                <h2>Lone Mountain Real Estate Market Trends</h2>
+                <p>Current insights into the Lone Mountain real estate market based on recent sales data</p>
+            </div>
+            <div class="trends-grid">
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="trend-value">$1.4M</div>
+                    <div class="trend-label">Average Sale Price</div>
+                </div>
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="trend-value">98.2%</div>
+                    <div class="trend-label">Avg. List-to-Sale Ratio</div>
+                </div>
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="trend-value">14</div>
+                    <div class="trend-label">Avg. Days on Market</div>
+                </div>
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="trend-value">18</div>
+                    <div class="trend-label">Sales Last 3 Months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Listings Section -->
+    <section class="listings-section">
+        <div class="container">
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <h3 class="filters-title">Refine Your Search</h3>
+                <form class="filters-form">
+                    <div class="filter-group">
+                        <label for="price-range">Sale Price Range</label>
+                        <select id="price-range" name="price-range">
+                            <option value="">Any Price</option>
+                            <option value="500000-1000000">$500k - $1M</option>
+                            <option value="1000000-1500000">$1M - $1.5M</option>
+                            <option value="1500000-2000000">$1.5M - $2M</option>
+                            <option value="2000000+">$2M+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms" name="bedrooms">
+                            <option value="">Any</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sq-feet">Square Feet</label>
+                        <select id="sq-feet" name="sq-feet">
+                            <option value="">Any</option>
+                            <option value="2000">2,000+ sq ft</option>
+                            <option value="3000">3,000+ sq ft</option>
+                            <option value="4000">4,000+ sq ft</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sold-date">Sold Within</label>
+                        <select id="sold-date" name="sold-date">
+                            <option value="">Any Time</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="180">Last 6 Months</option>
+                            <option value="365">Last Year</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="filter-button">Apply Filters</button>
+                </form>
+            </div>
+            
+            <!-- RealScout Listings Widget -->
+            <realscout-office-listings 
+                agent-encoded-id="QWdlbnQtMjI1MDUw" 
+                sort-order="SOLD_DATE_NEWEST" 
+                listing-status="For Sale,Rented" 
+                property-types="SFR,TC,OTHER" 
+                price-min="500000">
+            </realscout-office-listings>
+            
+            <!-- Related Pages -->
+            <div class="related-pages">
+                <h3>Browse Available Properties</h3>
+                <div class="related-links">
+                    <a href="newest-listings.html" class="related-link">Newest Listings</a>
+                    <a href="price-low-high.html" class="related-link">Affordable Luxury</a>
+                    <a href="price-high-low.html" class="related-link">Premium Estates</a>
+                    <a href="all-properties.html" class="related-link">All Available Properties</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section for SEO and Voice Search -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions About Recently Sold Properties</h2>
+                <p>Learn more about the Lone Mountain real estate market</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What can I learn from looking at recently sold properties?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Studying recently sold properties provides valuable insights into current market conditions, including average sale prices, time on market, price per square foot, and negotiation trends. For sellers, this information helps establish realistic pricing strategies. For buyers, it provides context for making competitive offers and understanding value. Additionally, examining sold properties reveals which features and amenities are most valued in the current market.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How has the Lone Mountain real estate market performed recently?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The Lone Mountain real estate market has shown strong performance with consistent appreciation. Over the past year, home values have increased approximately 8.5%, outperforming the broader Las Vegas market. Luxury properties have been in particularly high demand, with homes priced over $1 million selling at a 30% faster rate compared to last year. The average days on market has decreased from 22 to 14 days, indicating a competitive seller's market.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do you offer comparative market analyses for homeowners?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we provide complimentary comparative market analyses (CMAs) for Lone Mountain homeowners. Our detailed CMAs include analysis of recent comparable sales, current market trends, and property-specific value factors. This service helps homeowners understand their property's current market value and make informed decisions about selling, refinancing, or estate planning. Contact Dr. Janet Duffy at (702) 555-1234 to schedule your free CMA.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lone Mountain Vistas</h3>
+                    <p>Your gateway to luxury living in Las Vegas' most prestigious mountain community.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#properties">Properties</a></li>
+                        <li><a href="index.html#neighborhood">Neighborhood</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="newest-listings.html">Newest Listings</a></li>
+                        <li><a href="price-low-high.html">Affordable Luxury</a></li>
+                        <li><a href="price-high-low.html">Premium Estates</a></li>
+                        <li><a href="sold-properties.html">Recently Sold</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Mountain View Drive, Las Vegas, NV 89129</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:7025551234">(702) 555-1234</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:DrDuffy@bhhsnv.com">DrDuffy@bhhsnv.com</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lone Mountain Vistas. All rights reserved. REALTOR® - Dr. Janet Duffy, License# S.0197614.LLC</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/voice-search.js"></script>
+    
+    <!-- Page-specific script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Voice search functionality
+            const voiceSearchButton = document.getElementById('voice-search-button');
+            
+            if (voiceSearchButton && 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
+                recognition.onend = function() {
+                    // Reset button if recognition ends without result
+                    if (voiceSearchButton.classList.contains('listening')) {
+                        voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Sold Properties by Voice';
+                        voiceSearchButton.classList.remove('listening');
+                    }
+                };
+            } else {
+                // Hide voice search button if not supported
+                if (voiceSearchButton) {
+                    voiceSearchButton.style.display = 'none';
+                }
+            }
+            
+            // Simple voice query processor - would be expanded with actual filtering logic
+            function processVoiceQuery(query) {
+                // Convert to lowercase for easier matching
+                const lowerQuery = query.toLowerCase();
+                
+                // Extract price information
+                if (lowerQuery.includes('under 1 million') || lowerQuery.includes('less than 1 million')) {
+                    document.getElementById('price-range').value = '500000-1000000';
+                } else if (lowerQuery.includes('1 to 1.5 million') || lowerQuery.includes('between 1 and 1.5 million')) {
+                    document.getElementById('price-range').value = '1000000-1500000';
+                } else if (lowerQuery.includes('over 1.5 million') || lowerQuery.includes('above 1.5 million')) {
+                    document.getElementById('price-range').value = '1500000-2000000';
+                } else if (lowerQuery.includes('over 2 million') || lowerQuery.includes('above 2 million')) {
+                    document.getElementById('price-range').value = '2000000+';
+                }
+                
+                // Extract bedroom information
+                if (lowerQuery.includes('3 bedroom') || lowerQuery.includes('3 bed')) {
+                    document.getElementById('bedrooms').value = '3';
+                } else if (lowerQuery.includes('4 bedroom') || lowerQuery.includes('4 bed')) {
+                    document.getElementById('bedrooms').value = '4';
+                } else if (lowerQuery.includes('5 bedroom') || lowerQuery.includes('5 bed')) {
+                    document.getElementById('bedrooms').value = '5';
+                }
+                
+                // Extract square footage information
+                if (lowerQuery.includes('2000 square feet') || lowerQuery.includes('2000 sq ft')) {
+                    document.getElementById('sq-feet').value = '2000';
+                } else if (lowerQuery.includes('3000 square feet') || lowerQuery.includes('3000 sq ft')) {
+                    document.getElementById('sq-feet').value = '3000';
+                } else if (lowerQuery.includes('4000 square feet') || lowerQuery.includes('4000 sq ft')) {
+                    document.getElementById('sq-feet').value = '4000';
+                }
+                
+                // Extract time period information
+                if (lowerQuery.includes('last month') || lowerQuery.includes('past month') || lowerQuery.includes('30 days')) {
+                    document.getElementById('sold-date').value = '30';
+                } else if (lowerQuery.includes('last 3 months') || lowerQuery.includes('past 3 months') || lowerQuery.includes('quarter')) {
+                    document.getElementById('sold-date').value = '90';
+                } else if (lowerQuery.includes('last 6 months') || lowerQuery.includes('past 6 months') || lowerQuery.includes('half year')) {
+                    document.getElementById('sold-date').value = '180';
+                } else if (lowerQuery.includes('last year') || lowerQuery.includes('past year')) {
+                    document.getElementById('sold-date').value = '365';
+                }
+                
+                // Submit the form to apply filters
+                document.querySelector('.filter-button').click();
+            }
+            
+            // FAQ functionality
+            const faqButtons = document.querySelectorAll('.faq-question');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Toggle aria-expanded attribute
+                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !expanded);
+                    
+                    // Toggle answer visibility
+                    const answer = this.nextElementSibling;
+                    if (expanded) {
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 20px';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.padding = '0 20px 20px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                voiceSearchButton.addEventListener('click', function() {
+                    // Visual feedback that voice search is active
+                    this.innerHTML = '<i class="fas fa-microphone-alt"></i> Listening...';
+                    this.classList.add('listening');
+                    
+                    // Start recognition
+                    recognition.start();
+                });
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    console.log('Voice search query:', transcript);
+                    
+                    // Process the voice query - this would be expanded to actually filter results
+                    processVoiceQuery(transcript);
+                    
+                    // Reset button
+                    voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Sold Properties by Voice';
+                    voiceSearchButton.classList.remove('listening');
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error:', event.error);
+                    
+                    // Reset button
+                    voiceSearchButton.innerHTML = '<i class="fas fa-microphone"></i> Search Sold Properties by Voice';
+                    voiceSearchButton.classList.remove('listening');
+                    
+                    // Show error message
+                    alert('Voice recognition error: ' + event.error);
+                };
+                
+                recognition
