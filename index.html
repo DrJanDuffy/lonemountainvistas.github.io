@@ -217,11 +217,20 @@
                 <p>Explore our handpicked selection of luxury homes with spectacular mountain views</p>
             </div>
             <div id="properties-grid" class="properties-grid">
-                <!-- RealScout widget will be inserted here -->
-                <div class="loading-indicator">
-                    <div class="spinner"></div>
-                    <p>Loading properties...</p>
-                </div>
+                <!-- RealScout Office Listings Widget -->
+                <div class="rs-loading">Loading properties...</div>
+                <realscout-office-listings 
+                    agent-encoded-id="QWdlbnQtMjI1MDUw"
+                    sort-order="NEWEST"
+                    listing-status="For Sale"
+                    property-types="SFR,TC"
+                    price-min="500000"
+                    data-version="v3"
+                    show-filters="true"
+                    show-sort="true"
+                    show-pagination="true"
+                    items-per-page="6">
+                </realscout-office-listings>
             </div>
         </div>
     </section>
