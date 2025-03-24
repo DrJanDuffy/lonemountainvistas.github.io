@@ -177,7 +177,8 @@
         .featured-properties .container {
             max-width: 2400px;
             width: 100%;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
         .properties-grid {
@@ -210,13 +211,46 @@
             --rs-listing-font-size: 1.3rem;
             --rs-listing-title-size: 1.6rem;
             --rs-listing-price-size: 1.5rem;
+            --rs-listing-card-width: 100%;
+            --rs-listing-card-max-width: none;
+            --rs-listing-card-margin: 0 auto;
+            --rs-listing-card-padding: 2rem;
+            --rs-listing-image-width: 100%;
+            --rs-listing-image-height: auto;
+            --rs-listing-image-min-height: 500px;
+            --rs-listing-details-width: 100%;
+            --rs-listing-details-padding: 2rem;
+            --rs-listing-details-text-align: center;
             min-height: 480px;
             width: 100%;
             display: block;
-            margin: 2rem auto;
-            padding: 1rem;
-            border-radius: 8px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Featured Properties Section */
+        .featured-properties {
+            background-color: #F7F9FC;
+            padding: 6rem 0;
+            width: 100%;
+        }
+
+        .featured-properties .container {
+            max-width: 2400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .properties-grid {
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            min-height: 600px;
             background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 2rem;
         }
 
         /* Add specific styles for RealScout office listings in the featured properties section */
@@ -253,10 +287,16 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-card):hover {
+            transform: scale(1.02);
         }
 
         .featured-properties realscout-office-listings::part(listing-image) {
@@ -265,6 +305,7 @@
             min-height: 500px;
             object-fit: cover;
             border-radius: 8px;
+            margin-bottom: 1.5rem;
         }
 
         .featured-properties realscout-office-listings::part(listing-details) {
@@ -272,6 +313,28 @@
             text-align: center;
             padding: 2rem;
             font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-price) {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0A2540;
+            margin: 1rem 0;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-address) {
+            font-size: 1.3rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-specs) {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            font-size: 1.2rem;
         }
 
         /* Hero Section Adjustments */
