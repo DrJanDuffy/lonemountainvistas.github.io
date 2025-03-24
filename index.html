@@ -28,6 +28,15 @@
         integrity="sha384-">
     </script>
     <style>
+        /* Global Container Styles */
+        .container {
+            max-width: 1600px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* RealScout Components */
         realscout-simple-search {
             --rs-ss-font-primary-color: #0A2540;
             --rs-ss-searchbar-border-color: #3A8DDE;
@@ -37,44 +46,123 @@
             --rs-ss-background-color: #F7F9FC;
             min-height: 480px;
             z-index: 1000;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 95%;
+            width: 100%;
+            display: block;
+            margin: 2rem auto;
         }
+
         realscout-office-listings {
             --rs-listing-divider-color: rgb(101, 141, 172);
-            width: 95%;
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
             min-height: 480px;
             display: block;
             position: relative;
             z-index: 1000;
+            margin: 2rem auto;
         }
-        .featured-properties .container {
-            max-width: 1600px;
-            width: 98%;
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #0A2540;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
         }
+
+        /* Featured Properties Section */
+        .featured-properties {
+            background-color: #F7F9FC;
+            padding: 4rem 0;
+        }
+
         .properties-grid {
             width: 100%;
             margin: 0 auto;
+            display: block;
         }
+
         .rs-loading {
             text-align: center;
-            padding: 20px;
-            font-size: 16px;
+            padding: 2rem;
+            font-size: 1.1rem;
             color: #666;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 1rem auto;
+            max-width: 300px;
         }
-        @media (max-width: 768px) {
-            realscout-simple-search,
-            realscout-office-listings {
-                width: 100%;
+
+        /* Hero Section Adjustments */
+        .hero-search {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .property-search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .container {
+                width: 90%;
             }
-            .featured-properties .container {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 0 15px;
+            }
+            section {
+                padding: 3rem 0;
+            }
+            .property-search-form {
+                grid-template-columns: 1fr;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .section-title p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
                 width: 100%;
                 padding: 0 10px;
+            }
+            section {
+                padding: 2rem 0;
             }
         }
     </style>
