@@ -175,8 +175,9 @@
         }
 
         .featured-properties .container {
-            max-width: 2000px;
-            width: 98%;
+            max-width: 2400px;
+            width: 100%;
+            padding: 0 2rem;
         }
 
         .properties-grid {
@@ -200,12 +201,15 @@
             --rs-ss-background-color: #F7F9FC;
             --rs-ss-widget-width: 100%;
             --rs-listing-width: 100%;
-            --rs-listing-max-width: 100%;
+            --rs-listing-max-width: none;
             --rs-listing-container-width: 100%;
-            --rs-listing-grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            --rs-listing-grid-gap: 2rem;
+            --rs-listing-grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            --rs-listing-grid-gap: 2.5rem;
             --rs-listing-content-align: center;
             --rs-listing-justify-content: center;
+            --rs-listing-font-size: 1.1rem;
+            --rs-listing-title-size: 1.4rem;
+            --rs-listing-price-size: 1.3rem;
             min-height: 480px;
             width: 100%;
             display: block;
@@ -227,6 +231,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 auto;
         }
 
         .featured-properties realscout-office-listings::part(container) {
@@ -236,6 +241,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 auto;
         }
 
         .featured-properties realscout-office-listings::part(content) {
@@ -245,17 +251,42 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 auto;
         }
 
         .featured-properties realscout-office-listings::part(grid) {
             width: 100%;
             max-width: none;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2.5rem;
             justify-content: center;
             align-items: start;
-            padding: 1rem;
+            padding: 2rem;
+            margin: 0 auto;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-card) {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-image) {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .featured-properties realscout-office-listings::part(listing-details) {
+            width: 100%;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 1.1rem;
         }
 
         /* Hero Section Adjustments */
@@ -280,16 +311,20 @@
         /* Responsive Adjustments */
         @media (max-width: 1600px) {
             .featured-properties .container {
-                width: 95%;
+                width: 98%;
+            }
+            .featured-properties realscout-office-listings::part(grid) {
+                grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             }
         }
 
         @media (max-width: 1200px) {
             .featured-properties .container {
-                width: 92%;
+                width: 95%;
             }
-            realscout-office-listings {
-                --rs-listing-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .featured-properties realscout-office-listings::part(grid) {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+                gap: 2rem;
             }
         }
 
@@ -323,6 +358,13 @@
             }
             .hero-cta-group {
                 flex-direction: column;
+            }
+            .featured-properties .container {
+                padding: 0 1rem;
+            }
+            .featured-properties realscout-office-listings::part(grid) {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
             }
         }
 
