@@ -37,10 +37,15 @@
             --rs-ss-background-color: #F7F9FC;
             min-height: 480px;
             z-index: 1000;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
         }
         realscout-office-listings {
             --rs-listing-divider-color: rgb(101, 141, 172);
-            width: 100%;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             min-height: 480px;
             display: block;
             position: relative;
@@ -51,6 +56,12 @@
             padding: 20px;
             font-size: 16px;
             color: #666;
+        }
+        @media (max-width: 768px) {
+            realscout-simple-search,
+            realscout-office-listings {
+                width: 100%;
+            }
         }
     </style>
     <link rel="stylesheet" href="css/styles.css">
