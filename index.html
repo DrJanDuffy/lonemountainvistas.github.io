@@ -172,6 +172,9 @@
             background-color: #F7F9FC;
             padding: 6rem 0;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .featured-properties .container {
@@ -179,12 +182,17 @@
             width: 100%;
             margin: 0 auto;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .properties-grid {
             width: 100%;
             margin: 0 auto;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 600px;
             background: #fff;
             border-radius: 8px;
@@ -228,32 +236,7 @@
             padding: 0;
         }
 
-        /* Featured Properties Section */
-        .featured-properties {
-            background-color: #F7F9FC;
-            padding: 6rem 0;
-            width: 100%;
-        }
-
-        .featured-properties .container {
-            max-width: 2400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .properties-grid {
-            width: 100%;
-            margin: 0 auto;
-            display: block;
-            min-height: 600px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 2rem;
-        }
-
-        /* Add specific styles for RealScout office listings in the featured properties section */
+        /* RealScout office listings specific styles */
         .featured-properties realscout-office-listings {
             --rs-listing-padding: 0;
             --rs-listing-margin: 0;
@@ -266,6 +249,27 @@
             justify-content: center;
             align-items: center;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .featured-properties realscout-office-listings::part(container) {
+            width: 100%;
+            max-width: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .featured-properties realscout-office-listings::part(content) {
+            width: 100%;
+            max-width: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
         }
 
         .featured-properties realscout-office-listings::part(grid) {
@@ -295,10 +299,6 @@
             transition: transform 0.3s ease;
         }
 
-        .featured-properties realscout-office-listings::part(listing-card):hover {
-            transform: scale(1.02);
-        }
-
         .featured-properties realscout-office-listings::part(listing-image) {
             width: 100%;
             height: auto;
@@ -321,12 +321,14 @@
             font-weight: bold;
             color: #0A2540;
             margin: 1rem 0;
+            display: block;
         }
 
         .featured-properties realscout-office-listings::part(listing-address) {
             font-size: 1.3rem;
             color: #666;
             margin: 0.5rem 0;
+            display: block;
         }
 
         .featured-properties realscout-office-listings::part(listing-specs) {
@@ -335,6 +337,7 @@
             gap: 2rem;
             margin: 1rem 0;
             font-size: 1.2rem;
+            width: 100%;
         }
 
         /* Hero Section Adjustments */
@@ -363,6 +366,7 @@
             }
             .featured-properties realscout-office-listings::part(grid) {
                 grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+                padding: 2rem;
             }
         }
 
@@ -373,6 +377,7 @@
             .featured-properties realscout-office-listings::part(grid) {
                 grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
                 gap: 2.5rem;
+                padding: 1.5rem;
             }
         }
 
@@ -408,12 +413,12 @@
                 flex-direction: column;
             }
             .featured-properties .container {
-                padding: 0 1rem;
+                padding: 1rem;
             }
             .featured-properties realscout-office-listings::part(grid) {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                padding: 1.5rem;
+                padding: 1rem;
             }
             .featured-properties realscout-office-listings::part(listing-image) {
                 min-height: 300px;
