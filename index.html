@@ -175,6 +175,12 @@
             --rs-ss-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             --rs-ss-accent-color: #16B286;
             --rs-ss-background-color: #F7F9FC;
+            --rs-ss-widget-width: 100%;
+            --rs-listing-width: 100%;
+            --rs-listing-max-width: 100%;
+            --rs-listing-container-width: 100%;
+            --rs-listing-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            --rs-listing-grid-gap: 2rem;
             min-height: 480px;
             width: 100%;
             display: block;
@@ -225,7 +231,28 @@
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 1rem;
+            padding: 2rem;
+        }
+
+        /* Add specific styles for RealScout office listings in the featured properties section */
+        .featured-properties realscout-office-listings {
+            --rs-listing-padding: 0;
+            --rs-listing-margin: 0;
+            --rs-listing-inner-width: 100%;
+            --rs-listing-content-width: 100%;
+            padding: 0;
+        }
+
+        .featured-properties realscout-office-listings::part(container) {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .featured-properties realscout-office-listings::part(content) {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
         }
 
         /* Hero Section Adjustments */
