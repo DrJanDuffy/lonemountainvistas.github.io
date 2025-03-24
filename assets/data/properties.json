@@ -1,0 +1,38 @@
+{
+    "featured": ["1", "2", "3"],
+    "properties": [
+        {
+            "id": "1",
+            "address": "5678 Sierra Sunset Drive",
+            "price": 1250000,
+            "description": "Stunning contemporary home with panoramic mountain views, featuring an open floor plan, gourmet kitchen, and resort-style backyard.",
+            "bedrooms": 4,
+            "bathrooms": 3.5,
+            "squareFeet": 3200,
+            "type": "single-family",
+            "status": "available"
+        },
+        {
+            "id": "2",
+            "address": "8901 Desert Willow Court",
+            "price": 1750000,
+            "description": "Exquisite Mediterranean-inspired estate featuring high ceilings, marble flooring, chef's kitchen, home theater, and infinity pool.",
+            "bedrooms": 5,
+            "bathrooms": 4.5,
+            "squareFeet": 4800,
+            "type": "single-family",
+            "status": "available"
+        },
+        {
+            "id": "3",
+            "address": "1234 Golden Canyon Way",
+            "price": 985000,
+            "description": "Modern craftsman with incredible attention to detail, featuring hardwood floors, stone accents, and a seamless indoor-outdoor living experience.",
+            "bedrooms": 3,
+            "bathrooms": 2.5,
+            "squareFeet": 2600,
+            "type": "single-family",
+            "status": "available"
+        }
+    ]
+} 
