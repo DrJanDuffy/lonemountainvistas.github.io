@@ -37,14 +37,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+
+      - name: Generate package lock
+        run: |
+          echo "Removing any existing lock files..."
+          rm -f package-lock.json
+          echo "Installing dependencies and generating new lock file..."
+          npm install
+          echo "Verifying package-lock.json was created:"
+          ls -la package-lock.json
 
       - name: Install dependencies
         run: |
-          echo "Installing dependencies..."
-          npm install --verbose
+          echo "Installing dependencies from lock file..."
+          npm ci --verbose
           echo "Checking package-lock.json after install:"
-          ls -la package-lock.json || echo "No package-lock.json found after install"
+          ls -la package-lock.json
 
       - name: Run linting
         run: |
@@ -81,32 +89,28 @@ jobs:
           commit_message: "Deploy: ${{ github.sha }}"
 
       - name: Notify on Success
-        if: success()
+        if: success() && github.event.pull_request
         uses: actions/github-script@v6
         with:
           script: |
-            if (context.issue.number) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '✅ Deployment successful! Site is live at https://lonemountainvistas.com'
-              })
-            }
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Deployment successful! Site is live at https://lonemountainvistas.com'
+            })
 
       - name: Notify on Failure
-        if: failure()
+        if: failure() && github.event.pull_request
         uses: actions/github-script@v6
         with:
           script: |
-            if (context.issue.number) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '❌ Deployment failed. Please check the workflow logs for details.'
-              })
-            }
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Deployment failed. Please check the workflow logs for details.'
+            })
 
   security-scan:
     needs: build-and-deploy
