@@ -15,6 +15,14 @@
   "plugins": ["html"],
   "rules": {
     "no-unused-vars": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-useless-escape": "warn",
+    "no-undef": ["error", { "globals": { "gtag": "readonly", "Cerebras": "readonly" } }]
+  },
+  "globals": {
+    "getInteractionDepth": "readonly",
+    "realScoutConfig": "readonly",
+    "requestQueue": "readonly",
+    "openLightbox": "readonly"
   }
 } 
