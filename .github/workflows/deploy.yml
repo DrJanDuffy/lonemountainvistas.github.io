@@ -34,10 +34,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "Installing dependencies..."
-          npm ci
-          echo "Checking package-lock.json:"
-          ls -la package-lock.json
+          echo "Removing existing lock file..."
+          rm -f package-lock.json
+          echo "Installing dependencies and generating new lock file..."
+          npm install
+          echo "Verifying lock file contents..."
+          cat package-lock.json
+          echo "Installing additional dev dependencies..."
+          npm install --save-dev eslint-plugin-react@7.37.4
 
       - name: Run linting
         run: |
