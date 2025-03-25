@@ -34,18 +34,41 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "Removing existing lock file..."
-          rm -f package-lock.json
-          echo "Installing dependencies and generating new lock file..."
-          npm install
-          echo "Installing Next.js and React dependencies..."
-          npm install --save next@latest react@latest react-dom@latest
-          echo "Installing dev dependencies..."
-          npm install --save-dev eslint-plugin-react@7.37.4
-          echo "Verifying Next.js installation..."
-          npx next --version || echo "Next.js not found"
-          echo "Verifying lock file contents..."
-          cat package-lock.json
+          echo "Cleaning npm cache..."
+          npm cache clean --force
+          
+          echo "Checking for package-lock.json..."
+          if [ -f "package-lock.json" ]; then
+            echo "Existing package-lock.json found, attempting npm ci..."
+            if ! npm ci; then
+              echo "npm ci failed, falling back to clean install..."
+              rm -f package-lock.json
+              rm -rf node_modules
+            fi
+          else
+            echo "No package-lock.json found, proceeding with clean install..."
+          fi
+          
+          if [ ! -d "node_modules" ]; then
+            echo "Installing Next.js 15.2.4 first..."
+            npm install --save next@15.2.4
+            echo "Installing remaining dependencies..."
+            npm install
+            echo "Generating new package-lock.json..."
+            npm shrinkwrap
+            mv npm-shrinkwrap.json package-lock.json
+          fi
+          
+          echo "Verifying Next.js version..."
+          NEXT_VERSION=$(npm list next | grep next@ | cut -d'@' -f2)
+          if [ "$NEXT_VERSION" != "15.2.4" ]; then
+            echo "Error: Wrong Next.js version installed: $NEXT_VERSION"
+            exit 1
+          fi
+          echo "Next.js version verified: $NEXT_VERSION"
+          
+          echo "Installed dependencies:"
+          npm list || true
 
       - name: Run linting
         run: |
@@ -72,7 +95,7 @@ jobs:
           echo "NPM version:"
           npm --version
           echo "Next.js version:"
-          npx next --version || echo "Next.js not found"
+          npm list next
           echo "Building with Next.js..."
           npx next build
           echo "Exporting static files..."
@@ -85,7 +108,26 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: Run security audit
-        run: npm audit || echo "Security audit completed with warnings"
+        run: |
+          echo "Verifying Next.js version before audit..."
+          NEXT_VERSION=$(npm list next | grep next@ | cut -d'@' -f2)
+          if [ "$NEXT_VERSION" != "15.2.4" ]; then
+            echo "Error: Wrong Next.js version detected: $NEXT_VERSION"
+            exit 1
+          fi
+          echo "Running security audit..."
+          npm audit --production || {
+            AUDIT_OUTPUT=$(npm audit --json)
+            if echo "$AUDIT_OUTPUT" | grep -q '"severity":"critical"'; then
+              echo "Critical vulnerabilities found!"
+              exit 1
+            elif echo "$AUDIT_OUTPUT" | grep -q '"severity":"high"' && ! echo "$AUDIT_OUTPUT" | grep -q "next.*9\.5\.5.*14\.2\.14"; then
+              echo "High severity vulnerabilities found (not related to Next.js version)!"
+              exit 1
+            else
+              echo "Only Next.js version-related warnings found, continuing..."
+            fi
+          }
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
