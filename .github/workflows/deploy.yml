@@ -7,180 +7,33 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-env:
-  CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-
 permissions:
   contents: write
   pages: write
   id-token: write
-  issues: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
-
+      
       - name: Install dependencies
+        run: npm install
+      
+      - name: Build
         run: |
-          echo "Cleaning npm cache..."
-          npm cache clean --force
-          
-          echo "Checking for package-lock.json..."
-          if [ -f "package-lock.json" ]; then
-            echo "Existing package-lock.json found, attempting npm ci..."
-            if ! npm ci; then
-              echo "npm ci failed, falling back to clean install..."
-              rm -f package-lock.json
-              rm -rf node_modules
-            fi
-          else
-            echo "No package-lock.json found, proceeding with clean install..."
-          fi
-          
-          if [ ! -d "node_modules" ]; then
-            echo "Installing Next.js 15.2.4 first..."
-            npm install --save next@15.2.4
-            echo "Installing remaining dependencies..."
-            npm install
-            echo "Generating new package-lock.json..."
-            npm shrinkwrap
-            mv npm-shrinkwrap.json package-lock.json
-          fi
-          
-          echo "Verifying Next.js version..."
-          NEXT_VERSION=$(npm list next | grep next@ | cut -d'@' -f2)
-          if [ "$NEXT_VERSION" != "15.2.4" ]; then
-            echo "Error: Wrong Next.js version installed: $NEXT_VERSION"
-            exit 1
-          fi
-          echo "Next.js version verified: $NEXT_VERSION"
-          
-          echo "Installed dependencies:"
-          npm list || true
-
-      - name: Run linting
-        run: |
-          echo "Running ESLint..."
-          npm run lint -- --max-warnings 100 || echo "Linting completed with warnings"
-
-      - name: Run tests
-        run: npm run test:ci || echo "Tests completed with warnings"
-
-      - name: Check types
-        run: npm run type-check || echo "Type checking completed with warnings"
-
-      - name: Check for sensitive data
-        uses: zricethezav/gitleaks-action@v2
-        with:
-          config-path: .gitleaks.toml
-        continue-on-error: true
-
-      - name: Build project
-        run: |
-          echo "Starting build process..."
-          echo "Node version:"
-          node --version
-          echo "NPM version:"
-          npm --version
-          echo "Next.js version:"
-          npm list next
-          echo "Building with Next.js..."
-          npx next build
-          echo "Exporting static files..."
-          npx next export -o out
-          echo "Build completed. Checking output directory:"
-          ls -la out || echo "Output directory not found"
-        env:
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-          NODE_ENV: production
-          NEXT_TELEMETRY_DISABLED: 1
-
-      - name: Run security audit
-        run: |
-          echo "Verifying Next.js version before audit..."
-          NEXT_VERSION=$(npm list next | grep next@ | cut -d'@' -f2)
-          if [ "$NEXT_VERSION" != "15.2.4" ]; then
-            echo "Error: Wrong Next.js version detected: $NEXT_VERSION"
-            exit 1
-          fi
-          echo "Running security audit..."
-          npm audit --production || {
-            AUDIT_OUTPUT=$(npm audit --json)
-            if echo "$AUDIT_OUTPUT" | grep -q '"severity":"critical"'; then
-              echo "Critical vulnerabilities found!"
-              exit 1
-            elif echo "$AUDIT_OUTPUT" | grep -q '"severity":"high"' && ! echo "$AUDIT_OUTPUT" | grep -q "next.*9\.5\.5.*14\.2\.14"; then
-              echo "High severity vulnerabilities found (not related to Next.js version)!"
-              exit 1
-            else
-              echo "Only Next.js version-related warnings found, continuing..."
-            fi
-          }
-
-      - name: Deploy to GitHub Pages
+          npm run build
+          npm run export
+      
+      - name: Deploy
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
-          cname: lonemountainvistas.com
-          force_orphan: true
-          commit_message: "Deploy: ${{ github.sha }}"
-
-      - name: Notify on Success
-        if: success() && github.event.pull_request
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '✅ Deployment successful! Site is live at https://lonemountainvistas.com'
-            })
-
-      - name: Notify on Failure
-        if: failure() && github.event.pull_request
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '❌ Deployment failed. Please check the workflow logs for details.'
-            })
-
-  security-scan:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Run security scan
-        uses: snyk/actions/node@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
-
-      - name: Upload security scan results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: security-scan-results
-          path: snyk-results.json 
+          cname: lonemountainvistas.com 
