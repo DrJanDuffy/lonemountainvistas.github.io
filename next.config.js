@@ -3,13 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['lonemountainvistas.com'],
-    unoptimized: process.env.NODE_ENV === 'development',
+    domains: ['lonemountainvistas.com', 'images.pexels.com'],
+    unoptimized: false,
   },
-  // Ensure trailing slashes are handled correctly
-  trailingSlash: false,
-  // Configure build output
-  output: 'standalone',
+  // Configure build output for Vercel
+  output: 'export',
   // Disable x-powered-by header
   poweredByHeader: false,
   // Configure headers for security
