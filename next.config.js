@@ -3,17 +3,36 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['lonemountainvistas.com', 'images.pexels.com'],
-    formats: ['image/avif', 'image/webp']
+    domains: ['lonemountainvistas.com'],
+    unoptimized: process.env.NODE_ENV === 'development',
   },
-  env: {
-    CEREBRAS_API_KEY: process.env.CEREBRAS_API_KEY
+  // Ensure trailing slashes are handled correctly
+  trailingSlash: false,
+  // Configure build output
+  output: 'standalone',
+  // Disable x-powered-by header
+  poweredByHeader: false,
+  // Enable static exports for specific pages
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/' },
+      '/all-properties': { page: '/all-properties' },
+    };
   },
+  // Configure headers for security
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          },
           {
             key: 'X-Frame-Options',
             value: 'DENY'
