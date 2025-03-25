@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[PROPERTY_DESCRIPTION]">
+    <title>[PROPERTY_TITLE] | Lone Mountain Vistas</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="/src/styles/components.css">
+    
+    <!-- Cerebras Widget Styles -->
+    <link rel="stylesheet" href="https://widgets.cerebras.com/styles/hvs-widget.css" 
+          integrity="sha384-[HASH]" 
+          crossorigin="anonymous">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateListing",
+      "name": "[PROPERTY_TITLE]",
+      "description": "[PROPERTY_DESCRIPTION]",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[STREET_ADDRESS]",
+        "addressLocality": "Las Vegas",
+        "addressRegion": "NV",
+        "postalCode": "[ZIP_CODE]",
+        "addressCountry": "US"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <!-- Include your navigation component -->
+        <div id="nav-placeholder"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="property-hero">
+        <div class="hero-content">
+            <h1>[PROPERTY_TITLE]</h1>
+            <p class="hero-subtitle">[PROPERTY_SUBTITLE]</p>
+            <!-- Cerebras HVS Search Widget -->
+            <div class="hvs-widget-container" style="min-height: 480px; z-index: 1000;">
+                <div id="hvs-search-widget"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Property Features -->
+    <section class="features">
+        <div class="container">
+            <!-- Property details will be dynamically populated -->
+            <div id="property-details"></div>
+        </div>
+    </section>
+
+    <!-- Neighborhood Information -->
+    <section class="neighborhood">
+        <div class="container">
+            <!-- Cerebras Neighborhood Widget -->
+            <div class="hvs-widget-container">
+                <div id="hvs-neighborhood-widget"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact">
+        <div class="container">
+            <!-- Include your contact form component -->
+            <div id="contact-form-placeholder"></div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="/src/utils/navigation.js"></script>
+    <script src="/src/utils/contact-form.js"></script>
+    
+    <!-- Cerebras API Integration -->
+    <script src="https://widgets.cerebras.com/js/hvs-widget.min.js" 
+            integrity="sha384-[HASH]" 
+            crossorigin="anonymous"></script>
+    <script src="/src/templates/api-integrations/cerebras-config.js"></script>
+    <script>
+        // Initialize Cerebras widgets after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCerebrasWidgets();
+        });
+    </script>
+</body>
+</html> 

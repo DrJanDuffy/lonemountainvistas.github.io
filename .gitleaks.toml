@@ -1,0 +1,37 @@
+[allowlist]
+    description = "Global allowlist"
+    paths = [
+        '''node_modules''',
+        '''dist''',
+        '''package-lock.json''',
+    ]
+
+[[rules]]
+    description = "Cerebras API Key"
+    regex = '''csk-[a-zA-Z0-9]{40}'''
+    tags = ["key", "Cerebras"]
+    [[rules.allowlist]]
+        description = "Example keys in documentation"
+        regex = '''csk-example[a-zA-Z0-9]{34}'''
+
+[[rules]]
+    description = "Generic API Key"
+    regex = '''(?i)(api_key|apikey|secret)(.{0,20})?['\"][0-9a-zA-Z]{32,45}['\"]'''
+    [[rules.allowlist]]
+        description = "Example API keys in documentation"
+        regex = '''example[0-9a-zA-Z]{32,45}'''
+
+[[rules]]
+    description = "Generic Secret"
+    regex = '''(?i)secret(.{0,20})?['\"][0-9a-zA-Z]{32,45}['\"]'''
+
+[[rules]]
+    description = "Environment Variable File"
+    file = '''(?i)(^\.env|.*\.env\..*|.*\.env)$'''
+    [[rules.allowlist]]
+        description = "Example environment files"
+        files = [
+            '''^\.env\.example$''',
+            '''^\.env\.sample$''',
+            '''^\.env\.template$'''
+        ] 

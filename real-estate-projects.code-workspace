@@ -1,0 +1,68 @@
+{
+  "folders": [
+    {
+      "name": "Lone Mountain Vistas",
+      "path": "."
+    },
+    {
+      "name": "Luxury Properties",
+      "path": "../luxury-properties"
+    },
+    {
+      "name": "Mountain View Estates",
+      "path": "../mountain-view-estates"
+    },
+    {
+      "name": "Gated Communities",
+      "path": "../gated-communities"
+    }
+  ],
+  "settings": {
+    // Inherit settings from .vscode/settings.json
+    "window.zoomLevel": 0,
+    "window.titleBarStyle": "custom",
+    
+    // Workspace-specific overrides
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#0A2540",
+      "activityBar.foreground": "#ffffff",
+      "activityBar.inactiveForeground": "#ffffff66",
+      "activityBarBadge.background": "#16B286",
+      "activityBarBadge.foreground": "#ffffff"
+    },
+
+    // Project organization
+    "workbench.editor.labelFormat": "medium",
+    "explorer.sortOrder": "type",
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.html": "$(capture).css, $(capture).js",
+      "*.js": "$(capture).test.js, $(capture).spec.js",
+      "package.json": "package-lock.json, .npmrc, yarn.lock, .yarnrc"
+    },
+
+    // Search settings
+    "search.useIgnoreFiles": true,
+    "search.useGlobalIgnoreFiles": true,
+    "search.smartCase": true
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "ritwickdey.LiveServer",
+      "eamodio.gitlens"
+    ]
+  },
+  "launch": {
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Chrome against localhost",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  }
+} 

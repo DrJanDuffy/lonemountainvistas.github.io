@@ -1,0 +1,178 @@
+<template id="property-card-template">
+    <div class="property-card" data-property-id="[PROPERTY_ID]">
+        <div class="property-image">
+            <img src="[PROPERTY_IMAGE]" alt="[PROPERTY_TITLE]" loading="lazy">
+            <div class="property-status">[PROPERTY_STATUS]</div>
+        </div>
+        <div class="property-content">
+            <h3 class="property-title">[PROPERTY_TITLE]</h3>
+            <p class="property-price">[PROPERTY_PRICE]</p>
+            <div class="property-details">
+                <span class="beds">[BEDS] Beds</span>
+                <span class="baths">[BATHS] Baths</span>
+                <span class="sqft">[SQFT] Sq Ft</span>
+            </div>
+            <p class="property-address">[PROPERTY_ADDRESS]</p>
+            <div class="property-features">
+                [PROPERTY_FEATURES]
+            </div>
+        </div>
+        <div class="property-actions">
+            <button class="btn-primary schedule-tour">Schedule Tour</button>
+            <button class="btn-secondary save-property">Save</button>
+        </div>
+    </div>
+</template>
+
+<style>
+    .property-card {
+        background: #FFFFFF;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+    }
+
+    .property-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .property-image {
+        position: relative;
+        padding-top: 66.67%; /* 3:2 aspect ratio */
+    }
+
+    .property-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .property-status {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: #0A2540;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .property-content {
+        padding: 20px;
+    }
+
+    .property-title {
+        margin: 0 0 8px;
+        color: #0A2540;
+        font-size: 18px;
+    }
+
+    .property-price {
+        font-size: 24px;
+        font-weight: bold;
+        color: #16B286;
+        margin: 0 0 16px;
+    }
+
+    .property-details {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 12px;
+        color: #666;
+    }
+
+    .property-address {
+        color: #333;
+        margin: 0 0 16px;
+    }
+
+    .property-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .property-actions {
+        padding: 0 20px 20px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-primary {
+        background: #3A8DDE;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 2;
+    }
+
+    .btn-secondary {
+        background: #F7F9FC;
+        color: #0A2540;
+        border: 1px solid #0A2540;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+    }
+</style>
+
+<script>
+    class PropertyCard extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({ mode: 'open' });
+        }
+
+        static get observedAttributes() {
+            return ['property-id', 'image', 'title', 'price', 'beds', 'baths', 'sqft', 'address', 'status', 'features'];
+        }
+
+        connectedCallback() {
+            const template = document.getElementById('property-card-template');
+            const templateContent = template.content.cloneNode(true);
+            
+            // Apply styles
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = template.nextElementSibling.textContent;
+            this.shadowRoot.appendChild(styleSheet);
+            
+            // Apply content
+            this.shadowRoot.appendChild(templateContent);
+            this.updateContent();
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (oldValue !== newValue) {
+                this.updateContent();
+            }
+        }
+
+        updateContent() {
+            if (!this.shadowRoot) return;
+
+            const card = this.shadowRoot.querySelector('.property-card');
+            if (!card) return;
+
+            card.dataset.propertyId = this.getAttribute('property-id');
+            
+            const img = card.querySelector('.property-image img');
+            if (img) img.src = this.getAttribute('image');
+            
+            const title = card.querySelector('.property-title');
+            if (title) title.textContent = this.getAttribute('title');
+            
+            // Update other elements...
+        }
+    }
+
+    customElements.define('property-card', PropertyCard);
+</script> 

@@ -1,0 +1,39 @@
+{
+  "name": "lonemountainvistas.github.io-2",
+  "version": "1.0.0",
+  "description": "A modern, responsive real estate website showcasing luxury properties in the Lone Mountain Vistas community of Nevada.",
+  "main": "filter-integration.js",
+  "scripts": {
+    "start": "live-server --port=3000 --no-browser",
+    "lint": "eslint . --ext .js,.html",
+    "lint:fix": "eslint . --ext .js,.html --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,html,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,html,css,md}\"",
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "echo \"No build step required for static site\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrJanDuffy/lonemountainvistas.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrJanDuffy/lonemountainvistas.github.io/issues"
+  },
+  "homepage": "https://github.com/DrJanDuffy/lonemountainvistas.github.io#readme",
+  "devDependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/rest": "^21.1.1",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-html": "^8.1.2",
+    "live-server": "^1.2.2",
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

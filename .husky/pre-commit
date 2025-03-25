@@ -1,0 +1,20 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run ESLint
+npm run lint
+
+# Run tests
+npm test
+
+# Check image sizes
+node scripts/check-image-sizes.js
+
+# Validate property data
+node scripts/validate-property-data.js
+
+# Check for sensitive data
+node scripts/check-sensitive-data.js
+
+# Run performance checks
+node scripts/check-bundle-size.js 
