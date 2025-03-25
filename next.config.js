@@ -12,13 +12,6 @@ const nextConfig = {
   output: 'standalone',
   // Disable x-powered-by header
   poweredByHeader: false,
-  // Enable static exports for specific pages
-  exportPathMap: async function () {
-    return {
-      '/': { page: '/' },
-      '/all-properties': { page: '/all-properties' },
-    };
-  },
   // Configure headers for security
   async headers() {
     return [
