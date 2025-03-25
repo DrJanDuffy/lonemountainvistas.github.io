@@ -21,428 +21,14 @@
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://lonemountainvistas.com">
     <title>Lone Mountain Vistas | Luxury Homes with Mountain Views in Las Vegas</title>
-    <!-- RealScout Web Components -->
-    <script 
-        src="https://em.realscout.com/widgets/realscout-web-components.umd.js"
-        crossorigin="anonymous"
-        integrity="sha384-">
-    </script>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            line-height: 1.6;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            color: #0A2540;
-            background-color: #fff;
-        }
-
-        /* Header Styles */
-        header {
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-            padding: 1rem 0;
-        }
-
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0A2540;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav a {
-            color: #0A2540;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #F7F9FC;
-        }
-
-        .header-cta .phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #3A8DDE;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Global Container Styles */
-        .container {
-            max-width: 1800px;
-            width: 98%;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 6rem;
-            background-color: #F7F9FC;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: #0A2540;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #666;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-
-        .cta-button {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button.primary {
-            background-color: #3A8DDE;
-            color: #fff;
-        }
-
-        .cta-button.secondary {
-            background-color: #F7F9FC;
-            color: #0A2540;
-            border: 2px solid #3A8DDE;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Featured Properties Section */
-        .featured-properties {
-            background-color: #F7F9FC;
-            padding: 6rem 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .featured-properties .container {
-            max-width: 2400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .properties-grid {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 600px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 2rem;
-        }
-
-        /* RealScout Components */
-        realscout-simple-search,
-        realscout-office-listings {
-            --rs-ss-font-primary-color: #0A2540;
-            --rs-ss-searchbar-border-color: #3A8DDE;
-            --rs-ss-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            --rs-ss-accent-color: #16B286;
-            --rs-ss-background-color: #F7F9FC;
-            --rs-ss-widget-width: 100%;
-            --rs-listing-width: 100%;
-            --rs-listing-max-width: none;
-            --rs-listing-container-width: 100%;
-            --rs-listing-grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
-            --rs-listing-grid-gap: 3rem;
-            --rs-listing-content-align: center;
-            --rs-listing-justify-content: center;
-            --rs-listing-font-size: 1.3rem;
-            --rs-listing-title-size: 1.6rem;
-            --rs-listing-price-size: 1.5rem;
-            --rs-listing-card-width: 100%;
-            --rs-listing-card-max-width: none;
-            --rs-listing-card-margin: 0 auto;
-            --rs-listing-card-padding: 2rem;
-            --rs-listing-image-width: 100%;
-            --rs-listing-image-height: auto;
-            --rs-listing-image-min-height: 500px;
-            --rs-listing-details-width: 100%;
-            --rs-listing-details-padding: 2rem;
-            --rs-listing-details-text-align: center;
-            min-height: 480px;
-            width: 100%;
-            display: block;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        /* RealScout office listings specific styles */
-        .featured-properties realscout-office-listings {
-            --rs-listing-padding: 0;
-            --rs-listing-margin: 0;
-            --rs-listing-inner-width: 100%;
-            --rs-listing-content-width: 100%;
-            --rs-listing-content-max-width: none;
-            --rs-listing-container-max-width: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .featured-properties realscout-office-listings::part(container) {
-            width: 100%;
-            max-width: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .featured-properties realscout-office-listings::part(content) {
-            width: 100%;
-            max-width: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .featured-properties realscout-office-listings::part(grid) {
-            width: 100%;
-            max-width: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
-            gap: 3rem;
-            justify-content: center;
-            align-items: start;
-            padding: 3rem;
-            margin: 0 auto;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-card) {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            transform: scale(1);
-            transition: transform 0.3s ease;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-image) {
-            width: 100%;
-            height: auto;
-            min-height: 500px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-details) {
-            width: 100%;
-            text-align: center;
-            padding: 2rem;
-            font-size: 1.3rem;
-            line-height: 1.6;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-price) {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0A2540;
-            margin: 1rem 0;
-            display: block;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-address) {
-            font-size: 1.3rem;
-            color: #666;
-            margin: 0.5rem 0;
-            display: block;
-        }
-
-        .featured-properties realscout-office-listings::part(listing-specs) {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0;
-            font-size: 1.2rem;
-            width: 100%;
-        }
-
-        /* Hero Section Adjustments */
-        .hero-search {
-            width: 100%;
-            max-width: 1600px;
-            margin: 3rem auto 0;
-            padding: 0 1rem;
-        }
-
-        .property-search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 1600px) {
-            .featured-properties .container {
-                width: 98%;
-            }
-            .featured-properties realscout-office-listings::part(grid) {
-                grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
-                padding: 2rem;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .featured-properties .container {
-                width: 95%;
-            }
-            .featured-properties realscout-office-listings::part(grid) {
-                grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-                gap: 2.5rem;
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 0.5rem 0;
-            }
-            .header-container {
-                flex-wrap: wrap;
-            }
-            nav {
-                order: 3;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            section {
-                padding: 4rem 0;
-            }
-            .hero-cta-group {
-                flex-direction: column;
-            }
-            .featured-properties .container {
-                padding: 1rem;
-            }
-            .featured-properties realscout-office-listings::part(grid) {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 1rem;
-            }
-            .featured-properties realscout-office-listings::part(listing-image) {
-                min-height: 300px;
-            }
-            .featured-properties realscout-office-listings::part(listing-details) {
-                padding: 1.5rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            .container {
-                width: 100%;
-                padding: 0 1rem;
-            }
-        }
-    </style>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Structured Data for SEO and Voice Search -->
     <script type="application/ld+json">
     {
@@ -488,10 +74,9 @@
       ]
     }
     </script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="css/enhanced-styles.css" as="style">
     <link rel="preload" href="js/main.js" as="script">
 </head>
 <body>
@@ -526,60 +111,58 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="image-loader"></div>
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('assets/images/properties/hero-1.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('assets/images/properties/hero-2.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('assets/images/properties/hero-3.jpg')"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container hero-content" id="main-content">
-            <h1>Luxury Living With Stunning Lone Mountain Views</h1>
+            <h1>Luxury Living With Stunning Mountain Views</h1>
             <p>Discover exclusive properties in Las Vegas' premier northwest community, featuring breathtaking mountain vistas and unparalleled desert sunsets.</p>
             <div class="hero-cta-group">
                 <a href="#properties" class="cta-button primary">View Properties</a>
                 <a href="#virtual-tour" class="cta-button secondary">Take Virtual Tour</a>
             </div>
             <div class="hero-search">
-                <form action="#properties" id="property-search-form" class="property-search-form">
-                    <div class="search-group">
-                        <label for="price-range">Price Range</label>
-                        <select id="price-range" name="price-range">
-                            <option value="">Any Price</option>
-                            <option value="750000-1000000">$750k - $1M</option>
-                            <option value="1000000-1500000">$1M - $1.5M</option>
-                            <option value="1500000-2000000">$1.5M - $2M</option>
-                            <option value="2000000+">$2M+</option>
-                        </select>
+                <form action="#properties" class="property-search-form">
+                    <div class="search-row">
+                        <div class="search-group">
+                            <label for="price-range">Price Range</label>
+                            <select id="price-range" name="price-range">
+                                <option value="">Any Price</option>
+                                <option value="750000-1000000">$750k - $1M</option>
+                                <option value="1000000-1500000">$1M - $1.5M</option>
+                                <option value="1500000-2000000">$1.5M - $2M</option>
+                                <option value="2000000+">$2M+</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label for="bedrooms">Bedrooms</label>
+                            <select id="bedrooms" name="bedrooms">
+                                <option value="">Any</option>
+                                <option value="3">3+</option>
+                                <option value="4">4+</option>
+                                <option value="5">5+</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label for="bathrooms">Bathrooms</label>
+                            <select id="bathrooms" name="bathrooms">
+                                <option value="">Any</option>
+                                <option value="2">2+</option>
+                                <option value="3">3+</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="search-button">Find Homes</button>
                     </div>
-                    <div class="filter-group">
-                        <label>Bedrooms</label>
-                        <select>
-                            <option>Any</option>
-                            <option>3+</option>
-                            <option>4+</option>
-                            <option>5+</option>
-                        </select>
+                    <div class="voice-search-row">
+                        <button id="voice-search-button" type="button" aria-label="Search by voice">
+                            <i class="fas fa-microphone"></i> Search by Voice
+                        </button>
                     </div>
-                    <div class="filter-group">
-                        <label>Bathrooms</label>
-                        <select>
-                            <option>Any</option>
-                            <option>2+</option>
-                            <option>3+</option>
-                            <option>4+</option>
-                        </select>
-                    </div>
-                    <button class="search-button">Find Homes</button>
                 </form>
-                <realscout-simple-search 
-                    agent-encoded-id="QWdlbnQtMjI1MDUw"
-                    placeholder="Search by address, city, or zip code"
-                    data-version="v3"
-                    show-filters="true"
-                    show-sort="true"
-                    show-pagination="true"
-                    items-per-page="6">
-                </realscout-simple-search>
-                <div class="voice-search">
-                    <button id="voice-search-button" aria-label="Search by voice">
-                        <i class="fas fa-microphone"></i> Search by Voice
-                    </button>
-                </div>
             </div>
         </div>
         <div class="hero-stats">
@@ -596,29 +179,136 @@
                 <span class="stat-label">Days on Market</span>
             </div>
         </div>
+        <div class="hero-scroll-indicator">
+            <a href="#properties">
+                <span class="scroll-text">Scroll to explore</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
     </section>
 
     <!-- Featured Properties Section -->
     <section id="properties" class="featured-properties">
         <div class="container">
             <div class="section-title">
+                <span class="title-accent">Exclusive Collection</span>
                 <h2>Featured Lone Mountain Properties</h2>
                 <p>Explore our handpicked selection of luxury homes with spectacular mountain views</p>
             </div>
-            <div id="properties-grid" class="properties-grid">
-                <!-- RealScout Office Listings Widget -->
-                <realscout-office-listings 
-                    agent-encoded-id="QWdlbnQtMjI1MDUw"
-                    sort-order="NEWEST"
-                    listing-status="For Sale"
-                    property-types="SFR,TC"
-                    price-min="500000"
-                    data-version="v3"
-                    show-filters="true"
-                    show-sort="true"
-                    show-pagination="true"
-                    items-per-page="6">
-                </realscout-office-listings>
+            
+            <div class="properties-tabs">
+                <button class="property-tab active" data-tab="newest">Newest Listings</button>
+                <button class="property-tab" data-tab="luxury">Luxury Estates</button>
+                <button class="property-tab" data-tab="views">Mountain Views</button>
+                <button class="property-tab" data-tab="pools">With Pools</button>
+            </div>
+            
+            <div class="properties-grid" id="property-grid">
+                <!-- Property cards will be loaded here -->
+                <div class="property-card">
+                    <div class="property-badge">New Listing</div>
+                    <div class="property-image" style="background-image: url('assets/images/properties/property-1.jpg')">
+                        <div class="property-actions">
+                            <button class="action-button favorite" aria-label="Add to favorites">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-button share" aria-label="Share property">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-price">$1,250,000</div>
+                        <h3 class="property-address">5678 Sierra Sunset Drive</h3>
+                        <p class="property-description">Stunning contemporary home with panoramic mountain views, featuring an open floor plan, gourmet kitchen, and resort-style backyard.</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>4 Beds</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bath"></i>
+                                <span>3.5 Baths</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>3,200 Sq Ft</span>
+                            </div>
+                        </div>
+                        <a href="property-detail.html?id=1" class="property-link">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-badge">Featured</div>
+                    <div class="property-image" style="background-image: url('assets/images/properties/property-2.jpg')">
+                        <div class="property-actions">
+                            <button class="action-button favorite" aria-label="Add to favorites">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-button share" aria-label="Share property">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-price">$1,750,000</div>
+                        <h3 class="property-address">8901 Desert Willow Court</h3>
+                        <p class="property-description">Exquisite Mediterranean-inspired estate featuring high ceilings, marble flooring, chef's kitchen, home theater, and infinity pool.</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>5 Beds</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bath"></i>
+                                <span>4.5 Baths</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>4,800 Sq Ft</span>
+                            </div>
+                        </div>
+                        <a href="property-detail.html?id=2" class="property-link">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('assets/images/properties/property-3.jpg')">
+                        <div class="property-actions">
+                            <button class="action-button favorite" aria-label="Add to favorites">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-button share" aria-label="Share property">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-price">$985,000</div>
+                        <h3 class="property-address">1234 Golden Canyon Way</h3>
+                        <p class="property-description">Modern craftsman with incredible attention to detail, featuring hardwood floors, stone accents, and a seamless indoor-outdoor living experience.</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>3 Beds</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bath"></i>
+                                <span>2.5 Baths</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>2,600 Sq Ft</span>
+                            </div>
+                        </div>
+                        <a href="property-detail.html?id=3" class="property-link">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-all-container">
+                <a href="all-properties.html" class="view-all-button">View All Properties</a>
             </div>
         </div>
     </section>
@@ -627,9 +317,11 @@
     <section id="neighborhood" class="neighborhood-section">
         <div class="container">
             <div class="section-title">
+                <span class="title-accent">Prime Location</span>
                 <h2>Discover Lone Mountain</h2>
                 <p>A premier Las Vegas community offering tranquility, convenience, and stunning natural beauty</p>
             </div>
+            
             <div class="neighborhood-features">
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -638,6 +330,7 @@
                     <h3>Scenic Views</h3>
                     <p>Nestled against the picturesque Lone Mountain, residents enjoy breathtaking views and access to hiking trails just minutes from their doorstep.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-graduation-cap"></i>
@@ -645,6 +338,7 @@
                     <h3>Top-Rated Schools</h3>
                     <p>Home to some of Las Vegas' highest-rated schools, including Lone Mountain Elementary and prestigious private academies.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shopping-bag"></i>
@@ -652,6 +346,7 @@
                     <h3>Shopping & Dining</h3>
                     <p>Just minutes from Boca Park and Tivoli Village, offering upscale shopping, dining, and entertainment options.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-car"></i>
@@ -659,6 +354,153 @@
                     <h3>Prime Location</h3>
                     <p>Conveniently located with easy access to the 215 Beltway, just 15 minutes from Downtown Summerlin and 20 minutes from the Las Vegas Strip.</p>
                 </div>
+            </div>
+            
+            <div class="neighborhood-gallery">
+                <div class="gallery-item large" style="background-image: url('assets/images/properties/neighborhood-1.jpg')"></div>
+                <div class="gallery-item" style="background-image: url('assets/images/properties/neighborhood-2.jpg')"></div>
+                <div class="gallery-item" style="background-image: url('assets/images/properties/neighborhood-3.jpg')"></div>
+                <div class="gallery-item" style="background-image: url('assets/images/properties/neighborhood-4.jpg')"></div>
+                <div class="gallery-item" style="background-image: url('assets/images/properties/neighborhood-5.jpg')"></div>
+            </div>
+            
+            <div class="neighborhood-map-section">
+                <h3>Explore the Area</h3>
+                <div class="map-container" id="neighborhood-map"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-icon home"></span>
+                        <span class="legend-text">Lone Mountain Vistas</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-icon school"></span>
+                        <span class="legend-text">Schools</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-icon shopping"></span>
+                        <span class="legend-text">Shopping</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-icon park"></span>
+                        <span class="legend-text">Parks & Recreation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Tour Section -->
+    <section id="virtual-tour" class="virtual-tour-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="title-accent">Experience It Now</span>
+                <h2>Take a Virtual Tour</h2>
+                <p>Explore our properties from the comfort of your home with our immersive virtual tours</p>
+            </div>
+            
+            <div class="virtual-tour-player">
+                <div class="tour-video-placeholder">
+                    <img src="assets/images/properties/virtual-tour-thumbnail.jpg" alt="Virtual Tour Thumbnail">
+                    <button class="play-button">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="virtual-tour-features">
+                <div class="tour-feature">
+                    <i class="fas fa-vr-cardboard"></i>
+                    <h3>360° Views</h3>
+                    <p>Explore every room with full 360-degree panoramic views</p>
+                </div>
+                
+                <div class="tour-feature">
+                    <i class="fas fa-ruler"></i>
+                    <h3>Measure Spaces</h3>
+                    <p>Use our virtual measuring tool to check dimensions</p>
+                </div>
+                
+                <div class="tour-feature">
+                    <i class="fas fa-couch"></i>
+                    <h3>Visualize Furniture</h3>
+                    <p>Place virtual furniture to imagine your own design</p>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <a href="#contact" class="cta-button primary">Schedule In-Person Viewing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="title-accent">Client Stories</span>
+                <h2>What Our Clients Say</h2>
+                <p>Hear from homeowners who found their dream homes with Lone Mountain Vistas</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Working with Dr. Duffy to find our Lone Mountain home was an exceptional experience. Her knowledge of the area and attention to detail made the process seamless. We couldn't be happier with our new mountain view property!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/properties/testimonial-1.jpg" alt="Richard & Sarah Thompson" class="author-image">
+                            <div class="author-info">
+                                <h4>Richard & Sarah Thompson</h4>
+                                <p>Homeowners since 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"After searching for the perfect luxury home in Las Vegas for months, Dr. Duffy introduced us to Lone Mountain Vistas. The community amenities, stunning views, and proximity to everything we need exceeded our expectations."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/properties/testimonial-2.jpg" alt="Michael Rodriguez" class="author-image">
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>Homeowner since 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"As out-of-state buyers, we relied heavily on virtual tours and Dr. Duffy's expertise. The virtual experience was impressively accurate, and when we finally saw our Lone Mountain home in person, it was even better than we imagined!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/properties/testimonial-3.jpg" alt="Jennifer & David Miller" class="author-image">
+                            <div class="author-info">
+                                <h4>Jennifer & David Miller</h4>
+                                <p>Homeowners since 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-controls">
+                <button class="testimonial-prev" aria-label="Previous testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonial-dots">
+                    <button class="dot active" data-slide="0" aria-label="Testimonial 1"></button>
+                    <button class="dot" data-slide="1" aria-label="Testimonial 2"></button>
+                    <button class="dot" data-slide="2" aria-label="Testimonial 3"></button>
+                </div>
+                <button class="testimonial-next" aria-label="Next testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -668,10 +510,12 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
+                    <span class="title-accent">Our Story</span>
                     <h2>About Lone Mountain Vistas</h2>
                     <p>Nestled against the majestic backdrop of Lone Mountain in northwest Las Vegas, Lone Mountain Vistas offers an unparalleled living experience that combines luxury with natural beauty.</p>
                     <p>Our exclusive community features custom-designed homes, spacious lots, and world-class amenities, all while providing convenient access to Las Vegas' best shopping, dining, and entertainment.</p>
                     <p>At an elevation of approximately 3,000 feet, Lone Mountain provides a cooler microclimate than much of the Las Vegas Valley, with homes positioned to maximize views of both the mountain and the glittering city lights.</p>
+                    
                     <div class="broker-info">
                         <img src="assets/images/properties/janet-duffy.jpg" alt="Dr. Janet Duffy, REALTOR" class="broker-image">
                         <div class="broker-details">
@@ -682,7 +526,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image"></div>
+                <div class="about-image">
+                    <!-- About section image will be loaded here -->
+                </div>
             </div>
         </div>
     </section>
@@ -691,9 +537,11 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-title">
+                <span class="title-accent">Get In Touch</span>
                 <h2>Contact Us</h2>
                 <p>Interested in our Lone Mountain properties? Send us a message and our team will get back to you shortly.</p>
             </div>
+            
             <div class="contact-content">
                 <div class="contact-form-container">
                     <form action="#" method="post" id="contact-form" class="contact-form">
@@ -729,6 +577,7 @@
                         <button type="submit" class="submit-button">Send Message</button>
                     </form>
                 </div>
+                
                 <div class="contact-info">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -758,7 +607,88 @@
                             <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: By appointment</p>
                         </div>
                     </div>
+                    
+                    <div class="social-links">
+                        <a href="https://facebook.com/lonemountainvistas" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/lonemountainvistas" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/in/drjanetduffy" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="title-accent">Questions & Answers</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about Lone Mountain Vistas properties</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What is the price range of homes in Lone Mountain?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Homes in Lone Mountain typically range from $750,000 to $2.5 million, depending on size, location, views, and features. Our current inventory includes properties from 2,600 to 4,800 square feet with various luxury amenities.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What schools serve the Lone Mountain area?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lone Mountain is served by the Clark County School District, with Lone Mountain Elementary School, Ernest Becker Middle School, and Centennial High School as the zoned public schools. Several top-rated private schools are also within a short drive.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What amenities are available to Lone Mountain residents?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Residents enjoy access to community trails, parks, and recreation areas. Many homes feature private pools, outdoor kitchens, and entertainment spaces. The community is minutes from Lone Mountain Regional Park, which offers hiking trails, sports fields, and picnic areas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How far is Lone Mountain from the Las Vegas Strip?
+                        <span class="faq-icon"><i class="fas fa-plus"></i><i class="fas fa-minus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lone Mountain is approximately 15-20 minutes (12 miles) from the Las Vegas Strip, offering the perfect balance of proximity to world-class entertainment while maintaining a peaceful, suburban atmosphere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Stay Updated on New Listings</h2>
+                    <p>Subscribe to our newsletter to receive the latest property updates, market trends, and community news.</p>
+                </div>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter-consent" required>
+                        <label for="newsletter-consent">I agree to receive email updates from Lone Mountain Vistas.</label>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -770,6 +700,9 @@
                 <div class="footer-column">
                     <h3>Lone Mountain Vistas</h3>
                     <p>Your gateway to luxury living in Las Vegas' most prestigious mountain community.</p>
+                    <div class="footer-logo">
+                        <!-- Logo image would go here -->
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -779,6 +712,15 @@
                         <li><a href="#neighborhood">Neighborhood</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="newest-listings.html">Newest Listings</a></li>
+                        <li><a href="price-low-high.html">Affordable Luxury</a></li>
+                        <li><a href="price-high-low.html">Premium Estates</a></li>
+                        <li><a href="sold-properties.html">Recently Sold</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -798,65 +740,208 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Lone Mountain Vistas. All rights reserved. REALTOR® - Dr. Janet Duffy, License# S.0197614.LLC</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="sitemap.html">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="privacy-policy.html">Learn more</a></p>
+            <div class="cookie-buttons">
+                <button class="cookie-button accept">Accept</button>
+                <button class="cookie-button settings">Cookie Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
     <!-- Scripts -->
     <script src="js/config.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/voice-search.js"></script>
-    
     <!-- RealScout Implementation -->
-    <script type="module">
-        import { initRealScout } from './js/realscout-config.js';
-        
-        // Initialize RealScout when DOM is loaded
+    <script type="module" src="js/realscout-implementation.js"></script>
+    
+    <!-- Enhanced Scripts -->
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize RealScout Widget
-            initRealScout().catch(error => {
-                console.error('Failed to initialize RealScout:', error);
+            // Hero Slider
+            initHeroSlider();
+            
+            // Property Tabs
+            initPropertyTabs();
+            
+            // Testimonial Slider
+            initTestimonialSlider();
+            
+            // FAQ Accordion
+            initFaqAccordion();
+            
+            // Back to Top Button
+            initBackToTop();
+            
+            // Cookie Consent
+            initCookieConsent();
+        });
+        
+        // Hero Slider Functionality
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Auto advance slides
+            setInterval(nextSlide, 5000);
+        }
+        
+        // Property Tabs Functionality
+        function initPropertyTabs() {
+            const tabs = document.querySelectorAll('.property-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Update property grid based on tab
+                    const tabId = this.getAttribute('data-tab');
+                    filterProperties(tabId);
+                });
             });
             
-            // Handle property search form submission
-            const searchForm = document.getElementById('property-search-form');
-            if (searchForm) {
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Scroll to properties section
-                    document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Get form values
-                    const priceRange = document.getElementById('price-range').value;
-                    const bedrooms = document.getElementById('bedrooms').value;
-                    const bathrooms = document.getElementById('bathrooms').value;
-                    
-                    // Import the needed function
-                    import('./js/realscout-config.js').then(module => {
-                        const { createRealScoutWidget } = module;
-                        
-                        // Create options object
-                        const options = {
-                            'sort-order': 'NEWEST'
-                        };
-                        
-                        // Add filters if selected
-                        if (priceRange) {
-                            const [min, max] = priceRange.split('-');
-                            options['price-min'] = min;
-                            if (max && !max.includes('+')) options['price-max'] = max;
-                        }
-                        
-                        if (bedrooms) options['beds-min'] = bedrooms;
-                        if (bathrooms) options['baths-min'] = bathrooms;
-                        
-                        // Create widget with filters
-                        createRealScoutWidget('properties-grid', options);
-                    });
-                });
+            // Filter properties based on tab (placeholder for actual implementation)
+            function filterProperties(tabId) {
+                console.log('Filtering properties by:', tabId);
+                // In a real implementation, this would filter the property cards
             }
-        });
+        }
+        
+        // Testimonial Slider Functionality
+        function initTestimonialSlider() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.testimonial-dots .dot');
+            const prevButton = document.querySelector('.testimonial-prev');
+            const nextButton = document.querySelector('.testimonial-next');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+            }
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+            });
+            
+            // Previous button
+            prevButton.addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+            
+            // Next button
+            nextButton.addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+        }
+        
+        // FAQ Accordion Functionality
+        function initFaqAccordion() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    // Toggle expanded state
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    
+                    // Toggle answer visibility
+                    const answer = this.nextElementSibling;
+                    if (isExpanded) {
+                        answer.style.maxHeight = '0';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+        
+        // Back to Top Button Functionality
+        function initBackToTop() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to top when clicked
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Cookie Consent Functionality
+        function initCookieConsent() {
+            const cookieConsent = document.querySelector('.cookie-consent');
+            const acceptButton = document.querySelector('.cookie-button.accept');
+            const settingsButton = document.querySelector('.cookie-button.settings');
+            
+            // Check if user has already accepted cookies
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Show cookie consent after a delay
+                setTimeout(() => {
+                    cookieConsent.style.display = 'block';
+                }, 2000);
+            }
+            
+            // Accept cookies
+            acceptButton.addEventListener('click', function() {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieConsent.style.display = 'none';
+            });
+            
+            // Open cookie settings
+            settingsButton.addEventListener('click', function() {
+                // In a real implementation, this would open cookie settings
+                console.log('Open cookie settings');
+            });
+        }
     </script>
 </body>
 </html>
