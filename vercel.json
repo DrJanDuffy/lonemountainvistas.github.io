@@ -1,12 +1,19 @@
 {
   "version": 2,
   "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "public": false,
+  "regions": ["iad1"],
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
   "devCommand": "next dev",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "regions": ["sfo1"],
   "cleanUrls": true,
-  "public": false,
   "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
   "git": {
     "deploymentEnabled": {
