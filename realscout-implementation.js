@@ -52,4 +52,12 @@ function handleNoResults() {
                 container.innerHTML = `
                     <div class="no-results">
                         <h3>No Properties Match Your Criteria</h3>
-                        
+                        <p>Try adjusting your search filters or explore our other listings.</p>
+                        <button onclick="resetFilters()" class="reset-filters-btn">Reset Filters</button>
+                    </div>
+                `;
+            }
+        }
+    }, 1000);
+}
+
