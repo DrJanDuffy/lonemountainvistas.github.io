@@ -38,10 +38,14 @@ jobs:
           rm -f package-lock.json
           echo "Installing dependencies and generating new lock file..."
           npm install
+          echo "Installing Next.js and React dependencies..."
+          npm install --save next@latest react@latest react-dom@latest
+          echo "Installing dev dependencies..."
+          npm install --save-dev eslint-plugin-react@7.37.4
+          echo "Verifying Next.js installation..."
+          npx next --version || echo "Next.js not found"
           echo "Verifying lock file contents..."
           cat package-lock.json
-          echo "Installing additional dev dependencies..."
-          npm install --save-dev eslint-plugin-react@7.37.4
 
       - name: Run linting
         run: |
@@ -63,12 +67,22 @@ jobs:
       - name: Build project
         run: |
           echo "Starting build process..."
-          npm run build
+          echo "Node version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "Next.js version:"
+          npx next --version || echo "Next.js not found"
+          echo "Building with Next.js..."
+          npx next build
+          echo "Exporting static files..."
+          npx next export -o out
           echo "Build completed. Checking output directory:"
           ls -la out || echo "Output directory not found"
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
 
       - name: Run security audit
         run: npm audit || echo "Security audit completed with warnings"
