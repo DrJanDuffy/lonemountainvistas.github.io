@@ -51,13 +51,13 @@ jobs:
         run: |
           echo "Installing dependencies from lock file..."
           npm ci --verbose
+          echo "Installing ESLint plugins..."
+          npm install --save-dev eslint-plugin-react
           echo "Checking package-lock.json after install:"
           ls -la package-lock.json
 
       - name: Run linting
         run: |
-          echo "Installing eslint-plugin-react..."
-          npm install --save-dev eslint-plugin-react
           echo "Running ESLint in warning mode first..."
           npm run lint -- --max-warnings 100 || echo "Linting completed with warnings"
           echo "Running ESLint for critical errors only..."
